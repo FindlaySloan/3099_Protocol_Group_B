@@ -1,0 +1,23 @@
+_id: req_c10540c9e5964733879aa305cb838f03
+type: Request
+parentId: fld_wrk_c5e947f2696149ea93a701fb12e2f61557f2b181
+modified: 1610727995871
+created: 1610727995871
+url: "{{ base_url }}/api/users"
+name: Gets list of users
+description: >
+  This request obtains the list of all users. It will return a json object that
+  contains an array of individual user objects
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1610727995871
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

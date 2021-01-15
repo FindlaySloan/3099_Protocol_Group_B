@@ -1,0 +1,23 @@
+_id: req_51f93f2344514ed08bb736c43fa3174d
+type: Request
+parentId: fld_wrk_c5e947f2696149ea93a701fb12e2f615a0ca0c31
+modified: 1610727995823
+created: 1610727995823
+url: "{{ base_url }}/api/subforums/{{ id }}/posts"
+name: Gets list of posts
+description: >
+  This request obtains the list of all posts for a given subform. It will return
+  a json object that contains an array of individual post objects
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1610727995823
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -1,0 +1,23 @@
+_id: req_9aa2d3635cc546478b818310fa9a29d1
+type: Request
+parentId: fld_wrk_c5e947f2696149ea93a701fb12e2f615c0054993
+modified: 1610727995863
+created: 1610727995863
+url: "{{ base_url }}/api/forums/{{ id }}"
+name: Gets individual forum
+description: >
+  This request obtains an individual forum based on the forum id. It will return
+  a single forum json object
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1610727995863
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

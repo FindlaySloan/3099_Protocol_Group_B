@@ -1,0 +1,22 @@
+_id: req_77cdc404231a43cb86425e61994b0c98
+type: Request
+parentId: fld_wrk_c5e947f2696149ea93a701fb12e2f615590e3d26
+modified: 1610727995782
+created: 1610727995782
+url: "{{ base_url }}/api/key"
+name: Gets the public key for a server
+description: |
+  This requests obtains the public key for the server.
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1610727995782
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

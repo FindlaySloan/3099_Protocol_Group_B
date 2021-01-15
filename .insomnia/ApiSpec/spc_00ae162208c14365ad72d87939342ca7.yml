@@ -1,7 +1,7 @@
 _id: spc_00ae162208c14365ad72d87939342ca7
 type: ApiSpec
 parentId: wrk_c5e947f2696149ea93a701fb12e2f615
-modified: 1610724592200
+modified: 1610728020841
 created: 1610716706008
 fileName: 3099 Supergroup B Protocol
 contents: >-
@@ -361,17 +361,22 @@ contents: >-
              schema:
                $ref: '#/definitions/PublicKeyRequestBody'
 
+
         
 
-    
-
-
 
     
 
 
 
+
     
+
+
+
+
+    
+
 
 
 
@@ -950,30 +955,6 @@ contents: >-
         key:
           type: String
           example: "AAAAB3NzaC1yc2EAAAABJQAAAQB/nAmOjTmezNUDKYvEeIRf2YnwM9/uUG1d0BYsc8/tRtx+RGi7N2lUbp728MXGwdnL9od4cItzky/zVdLZE2cycOa18xBK9cOWmcKS0A8FYBxEQWJ/q9YVUgZbFKfYGaGQxsER+A0w/fX8ALuk78ktP31K69LcQgxIsl7rNzxsoOQKJ/CIxOGMMxczYTiEoLvQhapFQMs3FL96didKr/QbrfB1WT6s3838SEaXfgZvLef1YB2xmfhbT9OXFE3FXvh2UPBfN+ffE7iiayQf/2XR+8j4N4bW30DiPtOQLGUrH1y5X/rpNZNlWW2+jGIxqZtgWg7lTy3mXy5x836Sj/6L"
-
-
-    
-
-
-  # Added by API Auto Mocking Plugin
-
-  host: virtserver.swaggerhub.com
-
-  basePath: /FindlaySloan/CS3099_Group_B_Protocol/1.0.0
-
-
-
-  # schemes:
-
-  #   - http
-
-  # Added by API Auto Mocking Plugin
-
-  # schemes:
-
-  #  - http
-
-  # Added by API Auto Mocking Plugin
 
   schemes:
    - http

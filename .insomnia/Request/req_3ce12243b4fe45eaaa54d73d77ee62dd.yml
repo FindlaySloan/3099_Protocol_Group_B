@@ -1,0 +1,23 @@
+_id: req_3ce12243b4fe45eaaa54d73d77ee62dd
+type: Request
+parentId: fld_wrk_c5e947f2696149ea93a701fb12e2f6154613cdbe
+modified: 1610727995846
+created: 1610727995846
+url: "{{ base_url }}/api/subforums/{{ id }}"
+name: Gets individual subforum
+description: >
+  This request obtains an individual subforum based on the subforum id. It will
+  return a single subforum json object
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1610727995846
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

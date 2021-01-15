@@ -1,0 +1,23 @@
+_id: req_47174c0ffcc74cbfa561deac6d25ba55
+type: Request
+parentId: fld_wrk_c5e947f2696149ea93a701fb12e2f6154613cdbe
+modified: 1610727995839
+created: 1610727995839
+url: "{{ base_url }}/api/forums/{{ id }}/subforums"
+name: Gets list of subforums
+description: >
+  This request obtains the list of all subforums for a given form. It will
+  return a json object that contains an array of individual subforum objects
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1610727995839
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
