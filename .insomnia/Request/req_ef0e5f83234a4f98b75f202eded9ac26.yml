@@ -1,0 +1,33 @@
+_id: req_ef0e5f83234a4f98b75f202eded9ac26
+type: Request
+parentId: fld_wrk_c5e947f2696149ea93a701fb12e2f615a0ca0c31
+modified: 1610723538992
+created: 1610723538992
+url: "{{ base_url }}/api/subforums/{{ id }}/posts"
+name: Creates a new Post
+description: >
+  This request sends an individual post. It is used to create a new post. The
+  json object will be sent in the request body of the http request.
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "postTitle": "This is a title",
+      "postContents": "Markdown goes here",
+      "userId": 1
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    disabled: false
+    value: application/json
+authentication: {}
+metaSortKey: -1610723538992
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

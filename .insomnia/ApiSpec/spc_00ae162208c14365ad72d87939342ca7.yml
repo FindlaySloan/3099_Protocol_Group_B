@@ -1,7 +1,7 @@
 _id: spc_00ae162208c14365ad72d87939342ca7
 type: ApiSpec
 parentId: wrk_c5e947f2696149ea93a701fb12e2f615
-modified: 1610719488558
+modified: 1610724592200
 created: 1610716706008
 fileName: 3099 Supergroup B Protocol
 contents: >-
@@ -251,7 +251,7 @@ contents: >-
         - application/json
         responses:
           "200":
-            description: The list of posts has been retrieved successfully
+            description: The post has been sent successfully and a json object of the sent post is returned
             schema:
               $ref: '#/definitions/IndividualPost'
           "403":
@@ -306,28 +306,30 @@ contents: >-
               $ref: '#/definitions/Comments'
           "403":
             description: Forbidden. If permissions not allowed.
+          "404":
+            description: Post not found.
       
       post:
         tags:
         - Comments
         summary: Creates a new comment
         description: |
-          This request sends an individual comment. It is used to create a new comment. The json object will be sent in the request body of the http request.
+          This request sends an individual comment. It is used to create a new comment. The json object will be sent in the request body of the http request. It is worth noting that this request is for creating a top level parent comment and not a child comment.
           
         parameters:
         - name: id
           in: path
-          description: "ID of subforum for which all posts are to be obtained"
+          description: "ID of post for the comment to be added to"
           required: true
           type: "integer"
           format: "int64"
         
-        - name: post
+        - name: comment
           in: body
-          description: "The required information for the post in a json format"
+          description: "The required information for the comment in a json format"
           required: true
           schema:
-            $ref: '#/definitions/PostRequestBody'
+            $ref: '#/definitions/CommentRequestBody'
           
         consumes:
         - application/json
@@ -336,20 +338,41 @@ contents: >-
         - application/json
         responses:
           "200":
-            description: The list of posts has been retrieved successfully
+            description: The comment has been sent successfully and an indivdual comment json object will be returned
             schema:
-              $ref: '#/definitions/IndividualPost'
+              $ref: '#/definitions/IndividualComment'
           "403":
             description: Forbidden. If permissions not allowed.
+          "404":
+            description: Post not found.
+
+    /api/key:
+      get:
+        tags:
+        - Public Key
+        summary: Gets the public key for a server
+        description: |
+          This requests obtains the public key for the server.
+        obtains:
+        - application/json
+        responses:
+           "200":
+             description: The key has been obtained
+             schema:
+               $ref: '#/definitions/PublicKeyRequestBody'
+
+        
+
+    
+
 
 
     
 
 
-    
-
 
     
+
 
 
 
@@ -900,8 +923,33 @@ contents: >-
                   format: url
                   example: "<url>/api/posts/1/comments"
 
-
+    CommentRequestBody:
+      type: object
+      required: [
+        commentContent,
+        userId,
+        username,
+      ]
+      
+      properties:
+        commentContent:
+          type: string
+          example: "This is a comment"
+        userId:
+          type: integer
+          format: int64
+          example: 1
+        username:
+          type: string
+          example: "SamwiseGamgee123"
           
+    PublicKeyRequestBody:
+      type: object
+      required: [key]
+      properties:
+        key:
+          type: String
+          example: "AAAAB3NzaC1yc2EAAAABJQAAAQB/nAmOjTmezNUDKYvEeIRf2YnwM9/uUG1d0BYsc8/tRtx+RGi7N2lUbp728MXGwdnL9od4cItzky/zVdLZE2cycOa18xBK9cOWmcKS0A8FYBxEQWJ/q9YVUgZbFKfYGaGQxsER+A0w/fX8ALuk78ktP31K69LcQgxIsl7rNzxsoOQKJ/CIxOGMMxczYTiEoLvQhapFQMs3FL96didKr/QbrfB1WT6s3838SEaXfgZvLef1YB2xmfhbT9OXFE3FXvh2UPBfN+ffE7iiayQf/2XR+8j4N4bW30DiPtOQLGUrH1y5X/rpNZNlWW2+jGIxqZtgWg7lTy3mXy5x836Sj/6L"
 
 
     

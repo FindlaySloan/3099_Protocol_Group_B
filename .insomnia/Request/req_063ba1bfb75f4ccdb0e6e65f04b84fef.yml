@@ -1,0 +1,23 @@
+_id: req_063ba1bfb75f4ccdb0e6e65f04b84fef
+type: Request
+parentId: fld_wrk_c5e947f2696149ea93a701fb12e2f61557f2b181
+modified: 1610724003992
+created: 1610724003992
+url: "{{ base_url }}/api/users/{{ id }}"
+name: Gets individual user
+description: >
+  This request obtains an individual user based on the user id. It will return a
+  single user json object
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1610724003992
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

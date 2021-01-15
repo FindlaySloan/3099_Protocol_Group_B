@@ -1,0 +1,14 @@
+_id: env_env_a28f47a21d5c9ceb5cd3692a7e08b0832003b23a_sub
+type: Environment
+parentId: env_a28f47a21d5c9ceb5cd3692a7e08b0832003b23a
+modified: 1610724004007
+created: 1610723539020
+name: Swagger env
+data:
+  base_path: /FindlaySloan/CS3099_Group_B_Protocol/1.0.0
+  scheme: http
+  host: virtserver.swaggerhub.com
+dataPropertyOrder: null
+color: null
+isPrivate: false
+metaSortKey: 1610723539020

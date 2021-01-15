@@ -1,0 +1,23 @@
+_id: req_2b4fe779efa94dcc878555b1cdfe6271
+type: Request
+parentId: fld_wrk_c5e947f2696149ea93a701fb12e2f615c0054993
+modified: 1610723540008
+created: 1610723540008
+url: "{{ base_url }}/api/forums"
+name: Gets list of forums
+description: >
+  This request obtains the list of all forums. It will return a json object that
+  contains an array of individual forum objects
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1610723540008
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

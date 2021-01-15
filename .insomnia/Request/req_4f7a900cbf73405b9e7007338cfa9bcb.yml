@@ -1,0 +1,25 @@
+_id: req_4f7a900cbf73405b9e7007338cfa9bcb
+type: Request
+parentId: fld_wrk_c5e947f2696149ea93a701fb12e2f615fce06e20
+modified: 1610724003977
+created: 1610724003977
+url: "{{ base_url }}/api/posts/{{ id }}/comments"
+name: Gets list of parent comments of a post
+description: >
+  This request obtains the list of all parent comments for a given post. It will
+  return a json object that contains an array of individual comment objects. To
+  obtain children comments of the returned comments, a seperate get request is
+  required.
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1610724003977
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
