@@ -1,7 +1,7 @@
 _id: spc_00ae162208c14365ad72d87939342ca7
 type: ApiSpec
 parentId: wrk_c5e947f2696149ea93a701fb12e2f615
-modified: 1610719105728
+modified: 1610719488558
 created: 1610716706008
 fileName: 3099 Supergroup B Protocol
 contents: >-
@@ -139,13 +139,13 @@ contents: >-
           type: "integer"
           format: "int64"
         responses:
-          200:
+          "200":
             description: Subforum Exists and the Json object has been retrived successfully.
             schema:
               $ref: '#/definitions/IndividualSubforum'
-          403:
+          "403":
             description: Forbidden. If permissions not allowed.
-          404:
+          "404":
             description: User not found.   
             
     /api/forums/{id}/subforums:
@@ -165,11 +165,11 @@ contents: >-
         produces:
         - application/json
         responses:
-          200:
+          "200":
             description: The list of subforums has been retrieved successfully
             schema:
               $ref: '#/definitions/Subforums'
-          403:
+          "403":
             description: Forbidden. If permissions not allowed.
             
     /api/posts/{id}:
@@ -189,13 +189,13 @@ contents: >-
         produces:
         - application/json
         responses:
-          200:
+          "200":
             description: The list of posts has been retrieved successfully
             schema:
               $ref: '#/definitions/IndividualPost'
-          403:
+          "403":
             description: Forbidden. If permissions not allowed.
-          404:
+          "404":
             description: Post not found. 
             
     /api/subforums/{id}/posts:
@@ -215,11 +215,11 @@ contents: >-
         produces:
         - application/json
         responses:
-          200:
+          "200":
             description: The list of posts has been retrieved successfully
             schema:
               $ref: '#/definitions/Posts'
-          403:
+          "403":
             description: Forbidden. If permissions not allowed.
       
       post:
@@ -250,11 +250,11 @@ contents: >-
         produces:
         - application/json
         responses:
-          200:
+          "200":
             description: The list of posts has been retrieved successfully
             schema:
               $ref: '#/definitions/IndividualPost'
-          403:
+          "403":
             description: Forbidden. If permissions not allowed.
     
     /api/comments/{id}:
@@ -274,13 +274,13 @@ contents: >-
         produces:
         - application/json
         responses:
-          200:
+          "200":
             description: The list of comments has been retrieved successfully
             schema:
               $ref: '#/definitions/IndividualComment'
-          403:
+          "403":
             description: Forbidden. If permissions not allowed.
-          404:
+          "404":
             description: Comment not found. 
             
     /api/posts/{id}/comments:
@@ -300,11 +300,11 @@ contents: >-
         produces:
         - application/json
         responses:
-          200:
+          "200":
             description: The list of comments has been retrieved successfully
             schema:
               $ref: '#/definitions/Comments'
-          403:
+          "403":
             description: Forbidden. If permissions not allowed.
       
       post:
@@ -335,11 +335,11 @@ contents: >-
         produces:
         - application/json
         responses:
-          200:
+          "200":
             description: The list of posts has been retrieved successfully
             schema:
               $ref: '#/definitions/IndividualPost'
-          403:
+          "403":
             description: Forbidden. If permissions not allowed.
 
 
