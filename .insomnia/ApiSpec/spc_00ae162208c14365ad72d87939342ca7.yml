@@ -1,7 +1,7 @@
 _id: spc_00ae162208c14365ad72d87939342ca7
 type: ApiSpec
 parentId: wrk_c5e947f2696149ea93a701fb12e2f615
-modified: 1610717357808
+modified: 1610717947775
 created: 1610716706008
 fileName: 3099 Supergroup B Protocol
 contents: >-
@@ -55,13 +55,13 @@ contents: >-
           type: "integer"
           format: "int64"
         responses:
-          200:
+          "200":
             description: User Exists and the Json object has been retrived successfully.
             schema:
               $ref: '#/definitions/IndividualUser'
-          403:
+          "403":
             description: Forbidden. If permissions not allowed.
-          404:
+          "404":
             description: User not found.
     
     /api/users:
@@ -74,11 +74,11 @@ contents: >-
         produces:
         - application/json
         responses:
-          200:
+          "200":
             description: The list of users has been retrieved successfully
             schema:
               $ref: '#/definitions/Users'
-          403:
+          "403":
             description: Forbidden. If permissions not allowed.
           
     /api/forums/{id}:
@@ -98,13 +98,13 @@ contents: >-
           type: "integer"
           format: "int64"
         responses:
-          200:
+          "200":
             description: Forum Exists and the Json object has been retrived successfully.
             schema:
               $ref: '#/definitions/IndividualForum'
-          403:
+          "403":
             description: Forbidden. If permissions not allowed.
-          404:
+          "404":
             description: User not found.      
       
     /api/forums:
@@ -117,11 +117,11 @@ contents: >-
         produces:
         - application/json
         responses:
-          200:
+          "200":
             description: The list of forums has been retrieved successfully
             schema:
               $ref: '#/definitions/Forums'
-          403:
+          "403":
             description: Forbidden. If permissions not allowed.
             
     /api/subforums/{id}:
