@@ -828,6 +828,7 @@ definitions:
     - id
     - commentContent
     - userId
+    - username
     - postId
     - _links
 
@@ -846,6 +847,10 @@ definitions:
         type: integer
         format: int64
         example: 1
+
+      username:
+        type: string
+        example: "SamwiseGamgee123"
 
       postId:
         type: integer
