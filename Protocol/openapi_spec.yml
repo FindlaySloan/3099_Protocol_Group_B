@@ -859,7 +859,7 @@ definitions:
         - subforum
         - forum
         - user
-        - comments
+        - childComments
 
         properties:
           self:
@@ -918,7 +918,7 @@ definitions:
                 format: url
                 example: "<url>/users/1"
 
-          comments:
+          childComments:
             type: object
             required:
             - href
