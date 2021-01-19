@@ -27,6 +27,7 @@ tags:
 - name: Public Key
   description: Requests relating to the Public Key
 
+# This is where the http requests go
 paths:
 
   /api/users/{id}:
@@ -352,33 +353,7 @@ paths:
            schema:
              $ref: '#/definitions/PublicKeyRequestBody'
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# This is where the json definitions go
 definitions:
 
   IndividualUser:
