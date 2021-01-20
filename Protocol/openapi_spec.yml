@@ -473,7 +473,7 @@ definitions:
         type: string
         example: "SamwiseGamgee123"
 
-      btime:
+      createdTime:
         type: integer
         format: int64
         example: 1611071139539
@@ -724,8 +724,8 @@ definitions:
       - id
       - postTitle
       - postContents
-      - btime
-      - mtime
+      - createdTime
+      - modifiedTime
       - userId
       - subforumId
       - _links
@@ -745,12 +745,12 @@ definitions:
         type: string
         example: "Markdown goes here"
 
-      btime:
+      createdTime:
         type: integer
         format: int64
         example: 1611071139539
 
-      mtime:
+      modifiedTime:
         type: integer
         format: int64
         example: 1611071139539
@@ -883,8 +883,8 @@ definitions:
     required:
       - id
       - commentContent
-      - btime
-      - mtime
+      - createdTime
+      - modifiedTime
       - userId
       - postId
       - _links
@@ -900,12 +900,12 @@ definitions:
         type: string
         example: "This is a comment"
 
-      btime:
+      createdTime:
         type: integer
         format: int64
         example: 1611071139539
 
-      mtime:
+      modifiedTime:
         type: integer
         format: int64
         example: 1611071139539
