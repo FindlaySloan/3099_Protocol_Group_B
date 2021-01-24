@@ -192,12 +192,12 @@ paths:
         "404":
           description: Post not found.
 
-    put:
+    patch:
       tags:
         - Posts
-      summary: Replaces an Individual Post
+      summary: Updates an Individual Post
       description: |
-        This request replaces an individual post based on the post id
+        This request updates an individual post based on the post id
       parameters:
         - name: id
           in: path
@@ -208,10 +208,10 @@ paths:
 
         - name: post
           in: body
-          description: "The required information for the post in a json format"
+          description: "Updated post title and content in a json format"
           required: true
           schema:
-            $ref: '#/definitions/PostRequestBody'
+            $ref: '#/definitions/PostUpdateRequestBody'
 
       consumes:
         - application/json
@@ -288,7 +288,7 @@ paths:
           description: "The required information for the post in a json format"
           required: true
           schema:
-            $ref: '#/definitions/PostRequestBody'
+            $ref: '#/definitions/PostCreateRequestBody'
 
       consumes:
         - application/json
@@ -329,12 +329,12 @@ paths:
         "404":
           description: Comment not found.
 
-    put:
+    patch:
       tags:
         - Comments
-      summary: Replaces an Individual Comment
+      summary: Updates an Individual Comment
       description: |
-        This request replaces an individual comment based on the comment ID.
+        This request updates an individual comment based on the comment ID.
       parameters:
         - name: id
           in: path
@@ -345,10 +345,10 @@ paths:
 
         - name: comment
           in: body
-          description: "The required information for the comment in a json format"
+          description: "Updated comment content in a json format"
           required: true
           schema:
-            $ref: '#/definitions/CommentRequestBody'
+            $ref: '#/definitions/CommentUpdateRequestBody'
 
       consumes:
         - application/json
@@ -426,7 +426,7 @@ paths:
           description: "The required information for the comment in a json format"
           required: true
           schema:
-            $ref: '#/definitions/CommentRequestBody'
+            $ref: '#/definitions/CommentCreateRequestBody'
       consumes:
         - application/json
       produces:
@@ -858,7 +858,7 @@ definitions:
                 format: url
                 example: "<url>/api/subforums/1/posts"
 
-  PostRequestBody:
+  PostCreateRequestBody:
     type: object
     required: [
         postTitle,
@@ -877,6 +877,22 @@ definitions:
         type: integer
         format: int64
         example: 1
+
+  PostUpdateRequestBody:
+    type: object
+    required: [
+      postTitle,
+      postContents,
+      userId,
+    ]
+
+    properties:
+      postTitle:
+        type: string
+        example: "Updated title"
+      postContents:
+        type: string
+        example: "Updated post content"
 
   IndividualComment:
     type: object
@@ -1029,7 +1045,7 @@ definitions:
                 format: url
                 example: "<url>/api/posts/1/comments"
 
-  CommentRequestBody:
+  CommentCreateRequestBody:
     type: object
     required: [
         commentContent,
@@ -1048,6 +1064,19 @@ definitions:
       username:
         type: string
         example: "SamwiseGamgee123"
+
+  CommentUpdateRequestBody:
+    type: object
+    required: [
+      commentContent,
+      userId,
+      username,
+    ]
+
+    properties:
+      commentContent:
+        type: string
+        example: "Updated comment string"
 
   PublicKeyRequestBody:
     type: object
