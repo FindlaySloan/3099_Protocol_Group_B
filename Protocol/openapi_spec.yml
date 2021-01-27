@@ -206,6 +206,8 @@ paths:
             $ref: '#defintions/Posts'
         "403":
             description: Forbidden. If permissions not allowed.
+        "400":
+          description: Bad Request. If the index parameters or enum doesn't make sense.
   /api/posts/{id}:
     get:
       tags:
@@ -332,6 +334,8 @@ paths:
             $ref: '#defintions/Posts'
         "403":
           description: Forbidden. If permissions not allowed.
+        "400":
+          description: Bad Request. If the index parameters or enum doesn't make sense.
 
   /api/comments/{id}:
     get:
