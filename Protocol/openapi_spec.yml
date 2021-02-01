@@ -392,6 +392,68 @@ paths:
         "404":
           description: Post not found.
 
+  /api/comments/{id}/comments:
+    get:
+      tags:
+        - Comments
+      summary: Gets list of children comments of a post
+      description: |
+        This request obtains the list of all children comments for a given post. It will return a json object that contains an array of individual comment objects.
+      parameters:
+        - name: id
+          in: path
+          description: "ID of comment for which all children comments are to be obtained"
+          required: true
+          type: "integer"
+          format: "int64"
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: The list of comments has been retrieved successfully
+          schema:
+            $ref: '#/definitions/Comments'
+        "403":
+          description: Forbidden. If permissions not allowed.
+        "404":
+          description: Comment not found.
+
+    post:
+      tags:
+        - Comments
+      summary: Creates a new child comment
+      description: |
+        This request sends an individual comment. It is used to create a new child comment. The json object will be sent in the request body of the http request. It is worth noting that this request does not create a top level parent comment.
+      parameters:
+        - name: id
+          in: path
+          description: "ID of comment for the child comment to be added to"
+          required: true
+          type: "integer"
+          format: "int64"
+
+        - name: comment
+          in: body
+          description: "The required information for the comment in a json format"
+          required: true
+          schema:
+            $ref: '#/definitions/CommentRequestBody'
+
+      consumes:
+        - application/json
+
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: The comment has been sent successfully and an indivdual comment json object will be returned
+          schema:
+            $ref: '#/definitions/IndividualComment'
+        "403":
+          description: Forbidden. If permissions not allowed.
+        "404":
+          description: Comment not found.
+
   /api/key:
     get:
       tags:
@@ -823,6 +885,7 @@ definitions:
     - id
     - commentContent
     - userId
+    - username
     - postId
     - _links
 
@@ -842,6 +905,10 @@ definitions:
         format: int64
         example: 1
 
+      username:
+        type: string
+        example: "SamwiseGamgee123"
+
       postId:
         type: integer
         format: int64
@@ -854,7 +921,7 @@ definitions:
         - subforum
         - forum
         - user
-        - comments
+        - childComments
 
         properties:
           self:
@@ -913,7 +980,7 @@ definitions:
                 format: url
                 example: "<url>/users/1"
 
-          comments:
+          childComments:
             type: object
             required:
             - href
