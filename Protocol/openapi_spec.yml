@@ -56,6 +56,58 @@ paths:
         "404":
           description: User not found.
 
+  /api/users/{id}/posts:
+    get:
+      tags:
+        - Users
+      summary: Gets an individual users posts
+      description: |
+        This request obtains an individual users posts based on the user id. It will return a json object containing all of the posts
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: "ID of user to obtain the posts"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        "200":
+          description: User Exists and the Json object has been retrived successfully.
+          schema:
+            $ref: '#/definitions/Posts'
+        "403":
+          description: Forbidden. If permissions not allowed.
+        "404":
+          description: User not found.
+
+  /api/users/{id}/commments:
+    get:
+      tags:
+        - Users
+      summary: Gets an individual users comments
+      description: |
+        This request obtains an individual users comments based on the user id. It will return a json object containing all of the comments
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: "ID of user to obtain the comments"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        "200":
+          description: User Exists and the Json object has been retrived successfully.
+          schema:
+            $ref: '#/definitions/Comments'
+        "403":
+          description: Forbidden. If permissions not allowed.
+        "404":
+          description: User not found.
+
   /api/users:
     get:
       tags:
@@ -361,6 +413,7 @@ definitions:
     required:
     - id
     - username
+    - description
     - _links
     properties:
       id:
@@ -371,6 +424,10 @@ definitions:
       username:
         type: string
         example: "SamwiseGamgee123"
+
+      description:
+        type: string
+        example: "Hi, I am Samwise Gamgee"
 
       _links:
         type: object
