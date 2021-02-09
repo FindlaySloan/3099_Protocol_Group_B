@@ -343,13 +343,13 @@ paths:
   /api/key:
     get:
       security:
-        - 
-      
+        -
+
       tags:
       - Public Key
       summary: Gets the public key for a server
       description: |
-        This requests obtains the public key for the server.
+        This requests obtains the public key for the server, in PEM format.
       responses:
          "200":
            description: The key has been obtained
@@ -928,7 +928,7 @@ definitions:
     properties:
       key:
         type: string
-        example: "AAAAB3NzaC1yc2EAAAABJQAAAQB/nAmOjTmezNUDKYvEeIRf2YnwM9/uUG1d0BYsc8/tRtx+RGi7N2lUbp728MXGwdnL9od4cItzky/zVdLZE2cycOa18xBK9cOWmcKS0A8FYBxEQWJ/q9YVUgZbFKfYGaGQxsER+A0w/fX8ALuk78ktP31K69LcQgxIsl7rNzxsoOQKJ/CIxOGMMxczYTiEoLvQhapFQMs3FL96didKr/QbrfB1WT6s3838SEaXfgZvLef1YB2xmfhbT9OXFE3FXvh2UPBfN+ffE7iiayQf/2XR+8j4N4bW30DiPtOQLGUrH1y5X/rpNZNlWW2+jGIxqZtgWg7lTy3mXy5x836Sj/6L"
+        example: "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0icCN4zv8Bug7w6ZQFus\nxTNML3bJkliBCu769GbWww59fJaX6lk8xGQQ8J14iJMy0xeNk7otp21EO8nM9wo/\nMsuS4OEI/ujp4cAwDxuQqAkBLS3vfnJgZozEQiJHLG1iOWETzo7fjtyYGr0MJLYO\nk+/+O17Bnt52+rZxUiBOp0yhTUqrimPa7poIUYL5lZtuUBTYoyfxMQKdAYbolcIQ\npul/SWrtPYxuzEfd1rHQySMRu6oZDF8MTN2hz4jr0oSYbWJf+KzDkabN4Lgkhx+f\n0q22Rb6kR5E+o9skJxtYET5MqPOT73gmvbh99H3d4UAnmEB1IiC0RNs0mWZwkzvI\nlQIDAQAB\n-----END PUBLIC KEY-----\n"
 
 parameters:
   SignatureHeader:
