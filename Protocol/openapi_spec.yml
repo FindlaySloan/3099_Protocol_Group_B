@@ -349,7 +349,7 @@ paths:
       - Public Key
       summary: Gets the public key for a server
       description: |
-        This requests obtains the public key for the server, in PEM format.
+        This requests obtains the public key for the server, in PKCS#1 PEM format.
       responses:
          "200":
            description: The key has been obtained
