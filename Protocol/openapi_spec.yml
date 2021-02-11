@@ -44,8 +44,8 @@ paths:
         in: path
         description: "ID of user to return"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "uuid"
       responses:
         "200":
           description: User Exists and the Json object has been retrived successfully.
@@ -139,8 +139,8 @@ paths:
         in: path
         description: "ID of forum to return"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "uuid"
       responses:
         "200":
           description: Forum Exists and the Json object has been retrived successfully.
@@ -182,8 +182,8 @@ paths:
         in: path
         description: "ID of subforum to return"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "uuid"
       responses:
         "200":
           description: Subforum Exists and the Json object has been retrived successfully.
@@ -206,8 +206,8 @@ paths:
         in: path
         description: "ID of forum for which all subforums are to be obtained"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "uuid"
       produces:
       - application/json
       responses:
@@ -230,8 +230,8 @@ paths:
         in: path
         description: "ID of post to be obtained"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "uuid"
       produces:
       - application/json
       responses:
@@ -256,8 +256,8 @@ paths:
         in: path
         description: "ID of subforum for which all posts are to be obtained"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "uuid"
       produces:
       - application/json
       responses:
@@ -280,8 +280,8 @@ paths:
         in: path
         description: "ID of subforum for which all posts are to be obtained"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "uuid"
 
       - name: post
         in: body
@@ -315,8 +315,8 @@ paths:
         in: path
         description: "ID of comment to be obtained"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "uuid"
       produces:
       - application/json
       responses:
@@ -341,8 +341,8 @@ paths:
         in: path
         description: "ID of post for which all comments are to be obtained"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "uuid"
       produces:
       - application/json
       responses:
@@ -367,8 +367,8 @@ paths:
         in: path
         description: "ID of post for the comment to be added to"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "uuid"
 
       - name: comment
         in: body
@@ -479,9 +479,9 @@ definitions:
     - _links
     properties:
       id:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
       username:
         type: string
@@ -506,7 +506,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/api/users/1"
+                example: "<url>/api/users/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           users:
             type: object
@@ -559,9 +559,9 @@ definitions:
     - _links
     properties:
       id:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
       forumName:
         type: string
@@ -583,7 +583,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/api/forums/1"
+                example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           forums:
             type: object
@@ -603,7 +603,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/api/forums/1/subforums"
+                example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75/subforums"
 
   Forums:
     type: object
@@ -647,18 +647,18 @@ definitions:
     - _links
     properties:
       id:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
       subforumName:
         type: string
         example: "CS3050"
 
       forumId:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
       _links:
         type: object
@@ -676,7 +676,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/api/subforums/1"
+                example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           forum:
             type: object
@@ -686,7 +686,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/api/forums/1"
+                example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           posts:
             type: object
@@ -696,7 +696,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/api/subforums/1/posts"
+                example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75/posts"
 
   Subforums:
     type: object
@@ -729,7 +729,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/api/forums/1/subforums"
+                example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75/subforums"
 
   IndividualPost:
     type: object
@@ -744,9 +744,9 @@ definitions:
     properties:
 
       id:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
       postTitle:
         type: string
@@ -757,14 +757,14 @@ definitions:
         example: "Markdown goes here"
 
       userId:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
       subforumId:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
       _links:
         type: object
@@ -784,7 +784,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/api/posts/1"
+                example: "<url>/api/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           subforum:
             type: object
@@ -794,7 +794,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/api/subforums/1"
+                example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           forum:
             type: object
@@ -804,7 +804,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/api/forums/1"
+                example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           user:
             type: object
@@ -814,7 +814,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/users/1"
+                example: "<url>/users/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           comments:
             type: object
@@ -824,7 +824,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/posts/1/comments"
+                example: "<url>/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75/comments"
 
   Posts:
     type: object
@@ -857,7 +857,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/api/subforums/1/posts"
+                example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75/posts"
 
   PostRequestBody:
     type: object
@@ -875,9 +875,9 @@ definitions:
         type: string
         example: "Markdown goes here"
       userId:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
   IndividualComment:
     type: object
@@ -892,27 +892,27 @@ definitions:
     properties:
 
       id:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
       commentContent:
         type: string
         example: "This is a comment"
 
       userId:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
       username:
         type: string
         example: "SamwiseGamgee123"
 
       postId:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
       _links:
         type: object
@@ -932,7 +932,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/api/posts/1"
+                example: "<url>/api/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           post:
             type: object
@@ -940,7 +940,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/api/posts/1"
+                example: "<url>/api/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           parentComment:
             type: object
@@ -948,7 +948,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/api/comments/1"
+                example: "<url>/api/comments/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           subforum:
             type: object
@@ -958,7 +958,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/api/subforums/1"
+                example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           forum:
             type: object
@@ -968,7 +968,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/api/forums/1"
+                example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           user:
             type: object
@@ -978,7 +978,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/users/1"
+                example: "<url>/users/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           childComments:
             type: object
@@ -988,7 +988,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/comments/1/comments"
+                example: "<url>/comments/46659ec8-ebe8-4713-a435-c0e7c8cefc75/comments"
 
   Comments:
     type: object
@@ -1021,7 +1021,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/api/posts/1/comments"
+                example: "<url>/api/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75/comments"
 
   CommentRequestBody:
     type: object
@@ -1036,9 +1036,9 @@ definitions:
         type: string
         example: "This is a comment"
       userId:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
       username:
         type: string
         example: "SamwiseGamgee123"
