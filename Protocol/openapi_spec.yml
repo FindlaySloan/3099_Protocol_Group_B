@@ -368,7 +368,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/IndividualPost'
+                oneOf:
+                  - $ref: '#/components/schemas/IndividualPostText'
+                  - $ref: '#/components/schemas/IndividualPostMarkdown'
+                  - $ref: '#/components/schemas/IndividualPostImage'
+                  - $ref: '#/components/schemas/IndividualPostVideo'
         "403":
           description: Forbidden. If permissions not allowed.
 
