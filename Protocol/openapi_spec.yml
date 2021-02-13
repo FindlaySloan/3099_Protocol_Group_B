@@ -14,18 +14,18 @@ info:
 
 tags:
 
-- name: Users
-  description: Requests relating to the Users
-- name: Forums
-  description: Requests relating to the Forums
-- name: Subforums
-  description: Requests relating to the Subforums
-- name: Posts
-  description: Requests relating to the Posts
-- name: Comments
-  description: Requests relating to the Comments
-- name: Public Key
-  description: Requests relating to the Public Key
+  - name: Users
+    description: Requests relating to the Users
+  - name: Forums
+    description: Requests relating to the Forums
+  - name: Subforums
+    description: Requests relating to the Subforums
+  - name: Posts
+    description: Requests relating to the Posts
+  - name: Comments
+    description: Requests relating to the Comments
+  - name: Public Key
+    description: Requests relating to the Public Key
 
 # This is where the http requests go
 paths:
@@ -33,19 +33,19 @@ paths:
   /api/users/{id}:
     get:
       tags:
-      - Users
+        - Users
       summary: Gets individual user
       description: |
         This request obtains an individual user based on the user id. It will return a single user json object
       produces:
-      - application/json
+        - application/json
       parameters:
       - name: id
         in: path
         description: "ID of user to return"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "uuid"
       responses:
         "200":
           description: User Exists and the Json object has been retrived successfully.
@@ -56,15 +56,67 @@ paths:
         "404":
           description: User not found.
 
+  /api/users/{id}/posts:
+    get:
+      tags:
+        - Users
+      summary: Gets an individual users posts
+      description: |
+        This request obtains an individual users posts based on the user id. It will return a json object containing all of the posts
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: "ID of user to obtain the posts"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        "200":
+          description: User Exists and the Json object has been retrived successfully.
+          schema:
+            $ref: '#/definitions/Posts'
+        "403":
+          description: Forbidden. If permissions not allowed.
+        "404":
+          description: User not found.
+
+  /api/users/{id}/commments:
+    get:
+      tags:
+        - Users
+      summary: Gets an individual users comments
+      description: |
+        This request obtains an individual users comments based on the user id. It will return a json object containing all of the comments
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: "ID of user to obtain the comments"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        "200":
+          description: User Exists and the Json object has been retrived successfully.
+          schema:
+            $ref: '#/definitions/Comments'
+        "403":
+          description: Forbidden. If permissions not allowed.
+        "404":
+          description: User not found.
+
   /api/users:
     get:
       tags:
-      - Users
+        - Users
       summary: Gets list of users
       description: |
         This request obtains the list of all users. It will return a json object that contains an array of individual user objects
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: The list of users has been retrieved successfully
@@ -76,19 +128,19 @@ paths:
   /api/forums/{id}:
     get:
       tags:
-      - Forums
+        - Forums
       summary: Gets individual forum
       description: |
         This request obtains an individual forum based on the forum id. It will return a single forum json object
       produces:
-      - application/json
+        - application/json
       parameters:
       - name: id
         in: path
         description: "ID of forum to return"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "uuid"
       responses:
         "200":
           description: Forum Exists and the Json object has been retrived successfully.
@@ -102,12 +154,12 @@ paths:
   /api/forums:
     get:
       tags:
-      - Forums
+        - Forums
       summary: Gets list of forums
       description: |
         This request obtains the list of all forums. It will return a json object that contains an array of individual forum objects
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: The list of forums has been retrieved successfully
@@ -119,19 +171,19 @@ paths:
   /api/subforums/{id}:
     get:
       tags:
-      - Subforums
+        - Subforums
       summary: Gets individual subforum
       description: |
         This request obtains an individual subforum based on the subforum id. It will return a single subforum json object
       produces:
-      - application/json
+        - application/json
       parameters:
       - name: id
         in: path
         description: "ID of subforum to return"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "uuid"
       responses:
         "200":
           description: Subforum Exists and the Json object has been retrived successfully.
@@ -145,7 +197,7 @@ paths:
   /api/forums/{id}/subforums:
     get:
       tags:
-      - Subforums
+        - Subforums
       summary: Gets list of subforums
       description: |
         This request obtains the list of all subforums for a given form. It will return a json object that contains an array of individual subforum objects
@@ -154,10 +206,10 @@ paths:
         in: path
         description: "ID of forum for which all subforums are to be obtained"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "uuid"
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: The list of subforums has been retrieved successfully
@@ -169,7 +221,7 @@ paths:
   /api/posts/{id}:
     get:
       tags:
-      - Posts
+        - Posts
       summary: Gets an Individual Post
       description: |
         This request obtains an individual post based on the post id. It will return a single post json object
@@ -178,15 +230,67 @@ paths:
         in: path
         description: "ID of post to be obtained"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "uuid"
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
-          description: The list of posts has been retrieved successfully
+          description: The individual post has been retrieved successfully
           schema:
             $ref: '#/definitions/IndividualPost'
+        "403":
+          description: Forbidden. If permissions not allowed.
+        "404":
+          description: Post not found.
+
+    patch:
+      tags:
+        - Posts
+      summary: Updates an Individual Post
+      description: |
+        This request updates an individual post based on the post id
+      parameters:
+        - name: id
+          in: path
+          description: "ID of post to be replaced"
+          required: true
+          type: "integer"
+          format: "int64"
+
+        - name: post
+          in: body
+          description: "Updated post title and content in a json format"
+          required: true
+          schema:
+            $ref: '#/definitions/PostUpdateRequestBody'
+
+      consumes:
+        - application/json
+      responses:
+        "200":
+          description: The individual posts has been replaced successfully
+        "403":
+          description: Forbidden. If permissions not allowed.
+        "404":
+          description: Post not found.
+
+    delete:
+      tags:
+        - Posts
+      summary: Deletes an Individual Post
+      description: |
+        This request deletes an individual post based on the post ID
+      parameters:
+        - name: id
+          in: path
+          description: "ID of post to be obtained"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        "200":
+          description: The individual posts has been replaced successfully
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
@@ -195,19 +299,20 @@ paths:
   /api/subforums/{id}/posts:
     get:
       tags:
-      - Posts
+        - Posts
       summary: Gets list of posts
       description: |
         This request obtains the list of all posts for a given subform. It will return a json object that contains an array of individual post objects
       parameters:
+
       - name: id
         in: path
         description: "ID of subforum for which all posts are to be obtained"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "uuid"
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: The list of posts has been retrieved successfully
@@ -218,7 +323,7 @@ paths:
 
     post:
       tags:
-      - Posts
+        - Posts
       summary: Creates a new Post
       description: |
         This request sends an individual post. It is used to create a new post. The json object will be sent in the request body of the http request.
@@ -228,21 +333,21 @@ paths:
         in: path
         description: "ID of subforum for which all posts are to be obtained"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "uuid"
 
       - name: post
         in: body
         description: "The required information for the post in a json format"
         required: true
         schema:
-          $ref: '#/definitions/PostRequestBody'
+          $ref: '#/definitions/PostCreateRequestBody'
 
       consumes:
-      - application/json
+        - application/json
 
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: The post has been sent successfully and a json object of the sent post is returned
@@ -254,7 +359,7 @@ paths:
   /api/comments/{id}:
     get:
       tags:
-      - Comments
+        - Comments
       summary: Gets an Individual Comment
       description: |
         This request obtains an individual comment based on the comment id. It will return a single comment json object
@@ -263,15 +368,67 @@ paths:
         in: path
         description: "ID of comment to be obtained"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "uuid"
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
-          description: The list of comments has been retrieved successfully
+          description: The individual comment has been retrieved successfully
           schema:
             $ref: '#/definitions/IndividualComment'
+        "403":
+          description: Forbidden. If permissions not allowed.
+        "404":
+          description: Comment not found.
+
+    patch:
+      tags:
+        - Comments
+      summary: Updates an Individual Comment
+      description: |
+        This request updates an individual comment based on the comment ID.
+      parameters:
+        - name: id
+          in: path
+          description: "ID of comment to be replaced"
+          required: true
+          type: "integer"
+          format: "int64"
+
+        - name: comment
+          in: body
+          description: "Updated comment content in a json format"
+          required: true
+          schema:
+            $ref: '#/definitions/CommentUpdateRequestBody'
+
+      consumes:
+        - application/json
+      responses:
+        "200":
+          description: The individual comment has been replaced successfully
+        "403":
+          description: Forbidden. If permissions not allowed.
+        "404":
+          description: Comment not found.
+
+    delete:
+      tags:
+        - Comments
+      summary: Deletes an Individual Comment
+      description: |
+        This request replaces an individual comment based on the comment ID.
+      parameters:
+        - name: id
+          in: path
+          description: "ID of comment to be deleted"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        "200":
+          description: The individual comment has been deleted successfully
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
@@ -280,7 +437,7 @@ paths:
   /api/posts/{id}/comments:
     get:
       tags:
-      - Comments
+        - Comments
       summary: Gets list of parent comments of a post
       description: |
         This request obtains the list of all parent comments for a given post. It will return a json object that contains an array of individual comment objects. To obtain children comments of the returned comments, a seperate get request is required.
@@ -289,10 +446,10 @@ paths:
         in: path
         description: "ID of post for which all comments are to be obtained"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "uuid"
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: The list of comments has been retrieved successfully
@@ -305,31 +462,29 @@ paths:
 
     post:
       tags:
-      - Comments
+        - Comments
       summary: Creates a new comment
       description: |
         This request sends an individual comment. It is used to create a new comment. The json object will be sent in the request body of the http request. It is worth noting that this request is for creating a top level parent comment and not a child comment.
-
       parameters:
       - name: id
         in: path
         description: "ID of post for the comment to be added to"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
+        format: "uuid"
 
       - name: comment
         in: body
         description: "The required information for the comment in a json format"
         required: true
         schema:
-          $ref: '#/definitions/CommentRequestBody'
+          $ref: '#/definitions/CommentCreateRequestBody'
 
       consumes:
-      - application/json
-
+        - application/json
       produces:
-      - application/json
+        - application/json
       responses:
         "200":
           description: The comment has been sent successfully and an indivdual comment json object will be returned
@@ -340,21 +495,83 @@ paths:
         "404":
           description: Post not found.
 
+  /api/comments/{id}/comments:
+    get:
+      tags:
+        - Comments
+      summary: Gets list of children comments of a post
+      description: |
+        This request obtains the list of all children comments for a given post. It will return a json object that contains an array of individual comment objects.
+      parameters:
+        - name: id
+          in: path
+          description: "ID of comment for which all children comments are to be obtained"
+          required: true
+          type: "integer"
+          format: "int64"
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: The list of comments has been retrieved successfully
+          schema:
+            $ref: '#/definitions/Comments'
+        "403":
+          description: Forbidden. If permissions not allowed.
+        "404":
+          description: Comment not found.
+
+    post:
+      tags:
+        - Comments
+      summary: Creates a new child comment
+      description: |
+        This request sends an individual comment. It is used to create a new child comment. The json object will be sent in the request body of the http request. It is worth noting that this request does not create a top level parent comment.
+      parameters:
+        - name: id
+          in: path
+          description: "ID of comment for the child comment to be added to"
+          required: true
+          type: "integer"
+          format: "int64"
+
+        - name: comment
+          in: body
+          description: "The required information for the comment in a json format"
+          required: true
+          schema:
+            $ref: '#/definitions/CommentCreateRequestBody'
+
+      consumes:
+        - application/json
+
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: The comment has been sent successfully and an indivdual comment json object will be returned
+          schema:
+            $ref: '#/definitions/IndividualComment'
+        "403":
+          description: Forbidden. If permissions not allowed.
+        "404":
+          description: Comment not found.
+
   /api/key:
     get:
       security:
         -
 
       tags:
-      - Public Key
+        - Public Key
       summary: Gets the public key for a server
       description: |
         This requests obtains the public key for the server, in PKCS#1 PEM format.
       responses:
-         "200":
-           description: The key has been obtained
-           schema:
-             $ref: '#/definitions/PublicKeyRequestBody'
+        "200":
+          description: The key has been obtained
+          schema:
+            $ref: '#/definitions/PublicKeyRequestBody'
 
 # This is where the json definitions go
 definitions:
@@ -364,38 +581,47 @@ definitions:
     required:
     - id
     - username
+    - description
     - _links
     properties:
       id:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
       username:
         type: string
         example: "SamwiseGamgee123"
 
+      createdTime:
+        type: integer
+        format: int64
+        example: 1611071139539
+      description:
+        type: string
+        example: "Hi, I am Samwise Gamgee"
+
       _links:
         type: object
         required:
-        - self
-        - users
+          - self
+          - users
 
         properties:
           self:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
                 format: url
-                example: "<url>/api/users/1"
+                example: "<url>/api/users/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           users:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
@@ -405,14 +631,14 @@ definitions:
   Users:
     type: object
     required:
-    - _embedded
-    - _links
+      - _embedded
+      - _links
 
     properties:
       _embedded:
         type: object
         required:
-        - userList
+          - userList
         properties:
           userList:
             type: array
@@ -423,12 +649,12 @@ definitions:
       _links:
         type: object
         required:
-        - self
+          - self
         properties:
           self:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
@@ -438,14 +664,14 @@ definitions:
   IndividualForum:
     type: object
     required:
-    - id
-    - forumName
-    - _links
+      - id
+      - forumName
+      - _links
     properties:
       id:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
       forumName:
         type: string
@@ -454,25 +680,25 @@ definitions:
       _links:
         type: object
         required:
-        - self
-        - forums
-        - subforums
+          - self
+          - forums
+          - subforums
 
         properties:
           self:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
                 format: url
-                example: "<url>/api/forums/1"
+                example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           forums:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
@@ -482,24 +708,24 @@ definitions:
           subforums:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
                 format: url
-                example: "<url>/api/forums/1/subforums"
+                example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75/subforums"
 
   Forums:
     type: object
     required:
-    - _embedded
-    - _links
+      - _embedded
+      - _links
 
     properties:
       _embedded:
         type: object
         required:
-        - forumList
+          - forumList
         properties:
           forumList:
             type: array
@@ -510,12 +736,12 @@ definitions:
       _links:
         type: object
         required:
-        - self
+          - self
         properties:
           self:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
@@ -525,74 +751,74 @@ definitions:
   IndividualSubforum:
     type: object
     required:
-    - id
-    - subforumName
-    - forumId
-    - _links
+      - id
+      - subforumName
+      - forumId
+      - _links
     properties:
       id:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
       subforumName:
         type: string
         example: "CS3050"
 
       forumId:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
       _links:
         type: object
         required:
-        - self
-        - forum
-        - posts
+          - self
+          - forum
+          - posts
 
         properties:
           self:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
                 format: url
-                example: "<url>/api/subforums/1"
+                example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           forum:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
                 format: url
-                example: "<url>/api/forums/1"
+                example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           posts:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
                 format: url
-                example: "<url>/api/subforums/1/posts"
+                example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75/posts"
 
   Subforums:
     type: object
     required:
-    - _embedded
-    - _links
+      - _embedded
+      - _links
 
     properties:
       _embedded:
         type: object
         required:
-        - subforumList
+          - subforumList
         properties:
           subforumList:
             type: array
@@ -603,34 +829,36 @@ definitions:
       _links:
         type: object
         required:
-        - self
+          - self
         properties:
           self:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
                 format: url
-                example: "<url>/api/forums/1/subforums"
+                example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75/subforums"
 
   IndividualPost:
     type: object
     required:
-    - id
-    - postTitle
-    - postContents
-    - userId
-    - subforumId
-    - _links
+      - id
+      - postTitle
+      - postContents
+      - createdTime
+      - modifiedTime
+      - userId
+      - subforumId
+      - _links
 
     properties:
 
       id:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
       postTitle:
         type: string
@@ -640,87 +868,97 @@ definitions:
         type: string
         example: "Markdown goes here"
 
-      userId:
+      createdTime:
         type: integer
         format: int64
-        example: 1
+        example: 1611071139539
+
+      modifiedTime:
+        type: integer
+        format: int64
+        example: 1611071139539
+
+      userId:
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
       subforumId:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
       _links:
         type: object
         required:
-        - self
-        - subforum
-        - forum
-        - user
-        - comments
+          - self
+          - subforum
+          - forum
+          - user
+          - comments
 
         properties:
           self:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
                 format: url
-                example: "<url>/api/posts/1"
+                example: "<url>/api/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           subforum:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
                 format: url
-                example: "<url>/api/subforums/1"
+                example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           forum:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
                 format: url
-                example: "<url>/api/forums/1"
+                example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           user:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
                 format: url
-                example: "<url>/users/1"
+                example: "<url>/users/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           comments:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
                 format: url
-                example: "<url>/posts/1/comments"
+                example: "<url>/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75/comments"
 
   Posts:
     type: object
     required:
-    - _embedded
-    - _links
+      - _embedded
+      - _links
 
     properties:
       _embedded:
         type: object
         required:
-        - postList
+          - postList
         properties:
           postList:
             type: array
@@ -731,24 +969,24 @@ definitions:
       _links:
         type: object
         required:
-        - self
+          - self
         properties:
           self:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
                 format: url
-                example: "<url>/api/subforums/1/posts"
+                example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75/posts"
 
-  PostRequestBody:
+  PostCreateRequestBody:
     type: object
     required: [
-      postTitle,
-      postContents,
-      userId,
+        postTitle,
+        postContents,
+        userId,
     ]
 
     properties:
@@ -759,39 +997,71 @@ definitions:
         type: string
         example: "Markdown goes here"
       userId:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+
+  PostUpdateRequestBody:
+    type: object
+    required: [
+      postTitle,
+      postContents,
+      userId,
+    ]
+
+    properties:
+      postTitle:
+        type: string
+        example: "Updated title"
+      postContents:
+        type: string
+        example: "Updated post content"
 
   IndividualComment:
     type: object
     required:
-    - id
-    - commentContent
-    - userId
-    - postId
-    - _links
+      - id
+      - commentContent
+      - createdTime
+      - modifiedTime
+      - userId
+      - postId
+      - _links
 
     properties:
 
       id:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
       commentContent:
         type: string
         example: "This is a comment"
 
-      userId:
+      createdTime:
         type: integer
         format: int64
-        example: 1
+        example: 1611071139539
+
+      modifiedTime:
+        type: integer
+        format: int64
+        example: 1611071139539
+
+      userId:
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+
+      username:
+        type: string
+        example: "SamwiseGamgee123"
 
       postId:
-        type: integer
-        format: int64
-        example: 1
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
       _links:
         type: object
@@ -800,18 +1070,18 @@ definitions:
         - subforum
         - forum
         - user
-        - comments
+        - childComments
 
         properties:
           self:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
                 format: url
-                example: "<url>/api/posts/1"
+                example: "<url>/api/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           post:
             type: object
@@ -819,7 +1089,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/api/posts/1"
+                example: "<url>/api/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           parentComment:
             type: object
@@ -827,59 +1097,59 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/api/comments/1"
+                example: "<url>/api/comments/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           subforum:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
                 format: url
-                example: "<url>/api/subforums/1"
+                example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           forum:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
                 format: url
-                example: "<url>/api/forums/1"
+                example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           user:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
                 format: url
-                example: "<url>/users/1"
+                example: "<url>/users/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
-          comments:
+          childComments:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
                 format: url
-                example: "<url>/comments/1/comments"
+                example: "<url>/comments/46659ec8-ebe8-4713-a435-c0e7c8cefc75/comments"
 
   Comments:
     type: object
     required:
-    - _embedded
-    - _links
+      - _embedded
+      - _links
 
     properties:
       _embedded:
         type: object
         required:
-        - commentList
+          - commentList
         properties:
           commentList:
             type: array
@@ -890,19 +1160,39 @@ definitions:
       _links:
         type: object
         required:
-        - self
+          - self
         properties:
           self:
             type: object
             required:
-            - href
+              - href
             properties:
               href:
                 type: string
                 format: url
-                example: "<url>/api/posts/1/comments"
+                example: "<url>/api/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75/comments"
 
-  CommentRequestBody:
+  CommentCreateRequestBody:
+    type: object
+    required: [
+        commentContent,
+        userId,
+        username,
+    ]
+
+    properties:
+      commentContent:
+        type: string
+        example: "This is a comment"
+      userId:
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+      username:
+        type: string
+        example: "SamwiseGamgee123"
+
+  CommentUpdateRequestBody:
     type: object
     required: [
       commentContent,
@@ -913,18 +1203,11 @@ definitions:
     properties:
       commentContent:
         type: string
-        example: "This is a comment"
-      userId:
-        type: integer
-        format: int64
-        example: 1
-      username:
-        type: string
-        example: "SamwiseGamgee123"
+        example: "Updated comment string"
 
   PublicKeyRequestBody:
     type: object
-    required: [key]
+    required: [ key ]
     properties:
       key:
         type: string
@@ -970,4 +1253,4 @@ security:
 
 
 schemes:
- - http
+  - http
