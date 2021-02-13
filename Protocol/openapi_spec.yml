@@ -354,8 +354,14 @@ paths:
         in: body
         description: "The required information for the post in a json format"
         required: true
-        schema:
-          $ref: '#/components/schemas/PostCreateRequestBody'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/PostCreateRequestBodyText'
+                - $ref: '#/components/schemas/PostCreateRequestBodyMarkdown'
+                - $ref: '#/components/schemas/PostCreateRequestBodyImage'
+                - $ref: '#/components/schemas/PostCreateRequestBodyVideo'
       responses:
         "200":
           description: The post has been sent successfully and a json object of the sent post is returned
