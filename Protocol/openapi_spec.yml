@@ -1134,9 +1134,11 @@ components:
         format:
           type: string
           enum:
-            - "mp4"
-            - "webm"
-            - "youtube"
+            - "jpg"
+            - "png"
+            - "tif"
+            - "gif"
+            - "webp"
 
     PostCreateRequestBodyVideo:
       allOf:
