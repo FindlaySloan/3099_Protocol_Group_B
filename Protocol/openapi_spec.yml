@@ -72,6 +72,9 @@ paths:
           required: true
           type: "integer"
           format: "int64"
+        - $ref: '#/parameters/limitParam'
+        - $ref: '#/parameters/skipParam'
+        - $ref: '#/parameters/byEntryParam'
       responses:
         "200":
           description: User Exists and the Json object has been retrived successfully.
@@ -98,6 +101,9 @@ paths:
           required: true
           type: "integer"
           format: "int64"
+        - $ref: '#/parameters/limitParam'
+        - $ref: '#/parameters/skipParam'
+        - $ref: '#/parameters/byEntryParam'
       responses:
         "200":
           description: User Exists and the Json object has been retrived successfully.
@@ -310,13 +316,15 @@ paths:
       description: |
         This request obtains the list of all posts for a given subform. It will return a json object that contains an array of individual post objects
       parameters:
-
       - name: id
         in: path
         description: "ID of subforum for which all posts are to be obtained"
         required: true
         type: "string"
         format: "uuid"
+      - $ref: '#/parameters/limitParam'
+      - $ref: '#/parameters/skipParam'
+      - $ref: '#/parameters/byEntryParam'
       produces:
         - application/json
       responses:
@@ -454,6 +462,9 @@ paths:
         required: true
         type: "string"
         format: "uuid"
+      - $ref: '#/parameters/limitParam'
+      - $ref: '#/parameters/skipParam'
+      - $ref: '#/parameters/byEntryParam'
       produces:
         - application/json
       responses:
@@ -515,6 +526,9 @@ paths:
           required: true
           type: "integer"
           format: "int64"
+        - $ref: '#/parameters/limitParam'
+        - $ref: '#/parameters/skipParam'
+        - $ref: '#/parameters/byEntryParam'
       produces:
         - application/json
       responses:
