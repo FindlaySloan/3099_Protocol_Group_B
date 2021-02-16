@@ -117,11 +117,17 @@ paths:
         This request obtains the list of all users. It will return a json object that contains an array of individual user objects
       produces:
         - application/json
+      parameters:
+        - $ref: '#/parameters/limitParam'
+        - $ref: '#/parameters/skipParam'
+        - $ref: '#/parameters/byUserParam'
       responses:
         "200":
           description: The list of users has been retrieved successfully
           schema:
             $ref: '#/definitions/Users'
+        "400":
+          description: Bad Request. If the index parameters or enum doesn't make sense.
         "403":
           description: Forbidden. If permissions not allowed.
 
@@ -1209,6 +1215,51 @@ definitions:
       key:
         type: string
         example: "AAAAB3NzaC1yc2EAAAABJQAAAQB/nAmOjTmezNUDKYvEeIRf2YnwM9/uUG1d0BYsc8/tRtx+RGi7N2lUbp728MXGwdnL9od4cItzky/zVdLZE2cycOa18xBK9cOWmcKS0A8FYBxEQWJ/q9YVUgZbFKfYGaGQxsER+A0w/fX8ALuk78ktP31K69LcQgxIsl7rNzxsoOQKJ/CIxOGMMxczYTiEoLvQhapFQMs3FL96didKr/QbrfB1WT6s3838SEaXfgZvLef1YB2xmfhbT9OXFE3FXvh2UPBfN+ffE7iiayQf/2XR+8j4N4bW30DiPtOQLGUrH1y5X/rpNZNlWW2+jGIxqZtgWg7lTy3mXy5x836Sj/6L"
+
+parameters:
+  limitParam:
+    in: query
+    name: limit
+    type: integer
+#   default: 10    TODO: Should this have a default?
+    minimum: 0
+    required: false
+    description: The maximum number of posts being retrieved.
+
+  skipParam:
+    in: query
+    name: skip
+    type: integer
+    default: 0
+    minimum: 0
+    required: false
+    description: The number of items being skipped before the posts that are being retrieved.
+
+  byEntryParam:
+    in: query
+    name: by
+    type: string
+    enum:
+      - ranking
+      - createdTime
+      - modifiedTime
+    required: false
+    description: |
+      Sort order for post/comment entries.
+      * ranking - Highest 'ranked' items first.
+      * createdTime - Recently created posts first.
+      * modifiedTime - Recently modified posts first.
+
+  byUserParam:
+    in: query
+    name: by
+    type: string
+    enum:
+      - username
+    required: false
+    description: |
+      Sort order for user results.
+      * username - Ascending, from A to Z.
 
 schemes:
   - http
