@@ -234,49 +234,6 @@ paths:
         "403":
           description: Forbidden. If permissions not allowed.
 
-  /api/posts:
-    get:
-      tags:
-        - Posts
-      summary: Gets all Posts.
-      description: |
-        This request obtains a list of posts which can be sorted by a given sorting parameter. You can also specify the number of posts being retrieved.
-      parameters:
-        - in: query
-          name: limit
-          schema:
-            type: integer
-            minimum: 0
-          required: false
-          description: The maximum number of posts being retrieved.
-        - in: query
-          name: skip
-          schema:
-            type: integer
-            minimum: 0
-          required: false
-          description: The number of items being skipped before the posts that are being retrieved.
-        - in: query
-          name: by
-          schema:
-            type: string
-            enum:
-              - ranking
-              - createdTime
-              - modifiedTime
-          required: false
-          description: The field by which items are being sorted.
-      produces:
-        - application/json
-      responses:
-        "200":
-          description: The list of posts has been retrieved correctly.
-          schema:
-            $ref: '#defintions/Posts'
-        "403":
-            description: Forbidden. If permissions not allowed.
-        "400":
-          description: Bad Request. If the index parameters or enum doesn't make sense.
   /api/posts/{id}:
     get:
       tags:
@@ -418,50 +375,6 @@ paths:
             $ref: '#/definitions/IndividualPost'
         "403":
           description: Forbidden. If permissions not allowed.
-
-  /api/comments:
-    get:
-      tags:
-        - Comments
-      summary: Gets all Comments.
-      description: |
-        This request obtains a list of comments which can be sorted by a given sorting parameter. You can also specify the number of comments being retrieved.
-      parameters:
-        - in: query
-          name: limit
-          schema:
-            type: integer
-            minimum: 0
-          required: false
-          description: The maximum number of comments being retrieved.
-        - in: query
-          name: skip
-          schema:
-            type: integer
-            minimum: 0
-          required: false
-          description: The number of items being skipped before the comments that are being retrieved.
-        - in: query
-          name: by
-          schema:
-            type: string
-            enum:
-              - ranking
-              - createdTime
-              - modifiedTime
-          required: false
-          description: The field by which items are being sorted.
-      produces:
-        - application/json
-      responses:
-        "200":
-          description: The list of comments has been retrieved correctly.
-          schema:
-            $ref: '#defintions/Posts'
-        "403":
-          description: Forbidden. If permissions not allowed.
-        "400":
-          description: Bad Request. If the index parameters or enum doesn't make sense.
 
   /api/comments/{id}:
     get:
