@@ -1245,7 +1245,7 @@ parameters:
     in: query
     name: limit
     type: integer
-#   default: 10    TODO: Should this have a default?
+    default: 10    # TODO: Should this default be changed?
     minimum: 0
     required: false
     description: The maximum number of posts being retrieved.
