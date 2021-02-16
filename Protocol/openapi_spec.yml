@@ -80,6 +80,8 @@ paths:
           description: User Exists and the Json object has been retrived successfully.
           schema:
             $ref: '#/definitions/Posts'
+        "400":
+          description: Bad Request. If the index parameters or enum doesn't make sense.
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
@@ -109,6 +111,8 @@ paths:
           description: User Exists and the Json object has been retrived successfully.
           schema:
             $ref: '#/definitions/Comments'
+        "400":
+          description: Bad Request. If the index parameters or enum doesn't make sense.
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
@@ -332,6 +336,8 @@ paths:
           description: The list of posts has been retrieved successfully
           schema:
             $ref: '#/definitions/Posts'
+        "400":
+          description: Bad Request. If the index parameters or enum doesn't make sense.
         "403":
           description: Forbidden. If permissions not allowed.
 
@@ -472,6 +478,8 @@ paths:
           description: The list of comments has been retrieved successfully
           schema:
             $ref: '#/definitions/Comments'
+        "400":
+          description: Bad Request. If the index parameters or enum doesn't make sense.
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
@@ -536,6 +544,8 @@ paths:
           description: The list of comments has been retrieved successfully
           schema:
             $ref: '#/definitions/Comments'
+        "400":
+          description: Bad Request. If the index parameters or enum doesn't make sense.
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
