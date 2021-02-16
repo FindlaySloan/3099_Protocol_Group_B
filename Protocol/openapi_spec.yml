@@ -667,6 +667,9 @@ definitions:
         required:
           - userList
         properties:
+          totalCount:
+            type: integer
+            description: Total number of existing entries
           userList:
             type: array
             items: {
@@ -987,6 +990,9 @@ definitions:
         required:
           - postList
         properties:
+          totalCount:
+            type: integer
+            description: Total number of existing entries
           postList:
             type: array
             items: {
@@ -1178,6 +1184,9 @@ definitions:
         required:
           - commentList
         properties:
+          totalCount:
+            type: integer
+            description: Total number of existing entries
           commentList:
             type: array
             items: {
