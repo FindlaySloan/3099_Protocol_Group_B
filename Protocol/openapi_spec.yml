@@ -276,7 +276,11 @@ paths:
           description: "Updated post title and content in a json format"
           required: true
           schema:
-            $ref: '#/components/schemas/PostUpdateRequestBody'
+            oneOf:
+              - $ref: '#/components/schemas/PostCreateRequestBodyText'
+              - $ref: '#/components/schemas/PostCreateRequestBodyMarkdown'
+              - $ref: '#/components/schemas/PostCreateRequestBodyImage'
+              - $ref: '#/components/schemas/PostCreateRequestBodyVideo'
 
       responses:
         "200":
@@ -1168,22 +1172,103 @@ components:
             - "mp4"
             - "webm"
             - "youtube"
-
-    PostUpdateRequestBody:
+            -
+    PostUpdateRequestBodyTemplate:
       type: object
       required: [
-        postTitle,
-        postContents,
-        userId,
+          postTitle,
+          type,
+          userId,
       ]
 
       properties:
         postTitle:
           type: string
-          example: "Updated title"
+          example: "This is a title"
+        type:
+          type: string
+          enum: [ "text", "markdown", "image", "video" ]
+        userId:
+          type: string
+          format: uuid
+          example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+
+    PostUpdateRequestBodyText:
+      allOf:
+        - $ref: '#/components/schemas/PostCreateRequestBodyTemplate'
+      required: [
+          postContents,
+      ]
+      properties:
         postContents:
           type: string
-          example: "Updated post content"
+          example: "Markdown goes here"
+
+    PostUpdateRequestBodyMarkdown:
+      allOf:
+        - $ref: '#/components/schemas/PostCreateRequestBodyTemplate'
+      required: [
+          postMarkdown,
+      ]
+      properties:
+        postMarkdown:
+          type: string
+          example: "Markdown goes here"
+
+    PostUpdateRequestBodyImage:
+      allOf:
+        - $ref: '#/components/schemas/PostCreateRequestBodyTemplate'
+      required: [
+          imageURL,
+          format,
+      ]
+      properties:
+        imageURL:
+          type: string
+          format: url
+          example: "https://youtu.be/dQw4w9WgXcQ"
+        format:
+          type: string
+          enum:
+            - "jpg"
+            - "png"
+            - "tif"
+            - "gif"
+            - "webp"
+
+    PostUpdateRequestBodyVideo:
+      allOf:
+        - $ref: '#/components/schemas/PostCreateRequestBodyTemplate'
+      required: [
+          videoURL,
+          format,
+      ]
+      properties:
+        videoURL:
+          type: string
+          format: url
+          example: "https://youtu.be/dQw4w9WgXcQ"
+        format:
+          type: string
+          enum:
+            - "mp4"
+            - "webm"
+            - "youtube"
+#    PostUpdateRequestBody:
+#      type: object
+#      required: [
+#        postTitle,
+#        postContents,
+#        userId,
+#      ]
+#
+#      properties:
+#        postTitle:
+#          type: string
+#          example: "Updated title"
+#        postContents:
+#          type: string
+#          example: "Updated post content"
 
     IndividualComment:
       type: object
