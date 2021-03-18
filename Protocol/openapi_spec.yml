@@ -578,7 +578,6 @@ definitions:
     required:
     - id
     - username
-    - description
     - _links
     properties:
       id:
@@ -594,6 +593,7 @@ definitions:
         type: integer
         format: int64
         example: 1611071139539
+
       description:
         type: string
         example: "Hi, I am Samwise Gamgee"
