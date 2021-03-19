@@ -1,4 +1,4 @@
-openapi: '3.0.0'
+swagger: '2.0'
 
 info:
   description: This is the protocol that will be used by Group B in the CS3099 federated social media project. Here is a link to the document describing how digital signatures work. https://datatracker.ietf.org/doc/draft-ietf-httpbis-message-signatures/?include_text=1
@@ -37,21 +37,20 @@ paths:
       summary: Gets individual user
       description: |
         This request obtains an individual user based on the user id. It will return a single user json object
+      produces:
+        - application/json
       parameters:
-      - name: id
-        in: path
-        description: "ID of user to return"
-        required: true
-        schema:
+        - name: id
+          in: path
+          description: "ID of user to return"
+          required: true
           type: "string"
           format: "uuid"
       responses:
         "200":
           description: User Exists and the Json object has been retrived successfully.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/IndividualUser'
+          schema:
+            $ref: '#/definitions/IndividualUser'
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
@@ -64,21 +63,20 @@ paths:
       summary: Gets an individual users posts
       description: |
         This request obtains an individual users posts based on the user id. It will return a json object containing all of the posts
+      produces:
+        - application/json
       parameters:
         - name: id
           in: path
           description: "ID of user to obtain the posts"
           required: true
-          schema:
-            type: "integer"
-            format: "int64"
+          type: "integer"
+          format: "int64"
       responses:
         "200":
           description: User Exists and the Json object has been retrived successfully.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Posts'
+          schema:
+            $ref: '#/definitions/Posts'
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
@@ -91,21 +89,20 @@ paths:
       summary: Gets an individual users comments
       description: |
         This request obtains an individual users comments based on the user id. It will return a json object containing all of the comments
+      produces:
+        - application/json
       parameters:
         - name: id
           in: path
           description: "ID of user to obtain the comments"
           required: true
-          schema:
-            type: "integer"
-            format: "int64"
+          type: "integer"
+          format: "int64"
       responses:
         "200":
           description: User Exists and the Json object has been retrived successfully.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Comments'
+          schema:
+            $ref: '#/definitions/Comments'
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
@@ -118,13 +115,13 @@ paths:
       summary: Gets list of users
       description: |
         This request obtains the list of all users. It will return a json object that contains an array of individual user objects
+      produces:
+        - application/json
       responses:
         "200":
           description: The list of users has been retrieved successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Users'
+          schema:
+            $ref: '#/definitions/Users'
         "403":
           description: Forbidden. If permissions not allowed.
 
@@ -135,21 +132,20 @@ paths:
       summary: Gets individual forum
       description: |
         This request obtains an individual forum based on the forum id. It will return a single forum json object
+      produces:
+        - application/json
       parameters:
-      - name: id
-        in: path
-        description: "ID of forum to return"
-        required: true
-        schema:
+        - name: id
+          in: path
+          description: "ID of forum to return"
+          required: true
           type: "string"
           format: "uuid"
       responses:
         "200":
           description: Forum Exists and the Json object has been retrived successfully.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/IndividualForum'
+          schema:
+            $ref: '#/definitions/IndividualForum'
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
@@ -162,13 +158,13 @@ paths:
       summary: Gets list of forums
       description: |
         This request obtains the list of all forums. It will return a json object that contains an array of individual forum objects
+      produces:
+        - application/json
       responses:
         "200":
           description: The list of forums has been retrieved successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Forums'
+          schema:
+            $ref: '#/definitions/Forums'
         "403":
           description: Forbidden. If permissions not allowed.
 
@@ -179,21 +175,20 @@ paths:
       summary: Gets individual subforum
       description: |
         This request obtains an individual subforum based on the subforum id. It will return a single subforum json object
+      produces:
+        - application/json
       parameters:
-      - name: id
-        in: path
-        description: "ID of subforum to return"
-        required: true
-        schema:
+        - name: id
+          in: path
+          description: "ID of subforum to return"
+          required: true
           type: "string"
           format: "uuid"
       responses:
         "200":
           description: Subforum Exists and the Json object has been retrived successfully.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/IndividualSubforum'
+          schema:
+            $ref: '#/definitions/IndividualSubforum'
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
@@ -207,20 +202,19 @@ paths:
       description: |
         This request obtains the list of all subforums for a given form. It will return a json object that contains an array of individual subforum objects
       parameters:
-      - name: id
-        in: path
-        description: "ID of forum for which all subforums are to be obtained"
-        required: true
-        schema:
+        - name: id
+          in: path
+          description: "ID of forum for which all subforums are to be obtained"
+          required: true
           type: "string"
           format: "uuid"
+      produces:
+        - application/json
       responses:
         "200":
           description: The list of subforums has been retrieved successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Subforums'
+          schema:
+            $ref: '#/definitions/Subforums'
         "403":
           description: Forbidden. If permissions not allowed.
 
@@ -232,25 +226,19 @@ paths:
       description: |
         This request obtains an individual post based on the post id. It will return a single post json object
       parameters:
-      - name: id
-        in: path
-        description: "ID of post to be obtained"
-        required: true
-        schema:
+        - name: id
+          in: path
+          description: "ID of post to be obtained"
+          required: true
           type: "string"
           format: "uuid"
+      produces:
+        - application/json
       responses:
         "200":
           description: The individual post has been retrieved successfully
-          content:
-            application/json:
-              schema:
-                oneOf:
-                  - $ref: '#/components/schemas/IndividualPostText'
-                  - $ref: '#/components/schemas/IndividualPostMarkdown'
-                  - $ref: '#/components/schemas/IndividualPostImage'
-                  - $ref: '#/components/schemas/IndividualPostVideo'
-
+          schema:
+            $ref: '#/definitions/IndividualPost'
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
@@ -267,21 +255,18 @@ paths:
           in: path
           description: "ID of post to be replaced"
           required: true
-          schema:
-            type: "integer"
-            format: "int64"
+          type: "integer"
+          format: "int64"
 
         - name: post
           in: body
           description: "Updated post title and content in a json format"
           required: true
           schema:
-            oneOf:
-              - $ref: '#/components/schemas/PostCreateRequestBodyText'
-              - $ref: '#/components/schemas/PostCreateRequestBodyMarkdown'
-              - $ref: '#/components/schemas/PostCreateRequestBodyImage'
-              - $ref: '#/components/schemas/PostCreateRequestBodyVideo'
+            $ref: '#/definitions/PostUpdateRequestBody'
 
+      consumes:
+        - application/json
       responses:
         "200":
           description: The individual posts has been replaced successfully
@@ -301,9 +286,8 @@ paths:
           in: path
           description: "ID of post to be obtained"
           required: true
-          schema:
-            type: "integer"
-            format: "int64"
+          type: "integer"
+          format: "int64"
       responses:
         "200":
           description: The individual posts has been replaced successfully
@@ -321,20 +305,19 @@ paths:
         This request obtains the list of all posts for a given subform. It will return a json object that contains an array of individual post objects
       parameters:
 
-      - name: id
-        in: path
-        description: "ID of subforum for which all posts are to be obtained"
-        required: true
-        schema:
+        - name: id
+          in: path
+          description: "ID of subforum for which all posts are to be obtained"
+          required: true
           type: "string"
           format: "uuid"
+      produces:
+        - application/json
       responses:
         "200":
           description: The list of posts has been retrieved successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Posts'
+          schema:
+            $ref: '#/definitions/Posts'
         "403":
           description: Forbidden. If permissions not allowed.
 
@@ -346,37 +329,30 @@ paths:
         This request sends an individual post. It is used to create a new post. The json object will be sent in the request body of the http request.
 
       parameters:
-      - name: id
-        in: path
-        description: "ID of subforum for which all posts are to be obtained"
-        required: true
-        schema:
+        - name: id
+          in: path
+          description: "ID of subforum for which all posts are to be obtained"
+          required: true
           type: "string"
           format: "uuid"
 
-      - name: post
-        in: body
-        description: "The required information for the post in a json format"
-        required: true
-        content:
-          application/json:
-            schema:
-              oneOf:
-                - $ref: '#/components/schemas/PostCreateRequestBodyText'
-                - $ref: '#/components/schemas/PostCreateRequestBodyMarkdown'
-                - $ref: '#/components/schemas/PostCreateRequestBodyImage'
-                - $ref: '#/components/schemas/PostCreateRequestBodyVideo'
+        - name: post
+          in: body
+          description: "The required information for the post in a json format"
+          required: true
+          schema:
+            $ref: '#/definitions/PostCreateRequestBody'
+
+      consumes:
+        - application/json
+
+      produces:
+        - application/json
       responses:
         "200":
           description: The post has been sent successfully and a json object of the sent post is returned
-          content:
-            application/json:
-              schema:
-                oneOf:
-                  - $ref: '#/components/schemas/IndividualPostText'
-                  - $ref: '#/components/schemas/IndividualPostMarkdown'
-                  - $ref: '#/components/schemas/IndividualPostImage'
-                  - $ref: '#/components/schemas/IndividualPostVideo'
+          schema:
+            $ref: '#/definitions/IndividualPost'
         "403":
           description: Forbidden. If permissions not allowed.
 
@@ -388,20 +364,19 @@ paths:
       description: |
         This request obtains an individual comment based on the comment id. It will return a single comment json object
       parameters:
-      - name: id
-        in: path
-        description: "ID of comment to be obtained"
-        required: true
-        schema:
+        - name: id
+          in: path
+          description: "ID of comment to be obtained"
+          required: true
           type: "string"
           format: "uuid"
+      produces:
+        - application/json
       responses:
         "200":
           description: The individual comment has been retrieved successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/IndividualComment'
+          schema:
+            $ref: '#/definitions/IndividualComment'
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
@@ -418,16 +393,18 @@ paths:
           in: path
           description: "ID of comment to be replaced"
           required: true
-          schema:
-            type: "integer"
-            format: "int64"
+          type: "integer"
+          format: "int64"
 
         - name: comment
           in: body
           description: "Updated comment content in a json format"
           required: true
           schema:
-            $ref: '#/components/schemas/CommentUpdateRequestBody'
+            $ref: '#/definitions/CommentUpdateRequestBody'
+
+      consumes:
+        - application/json
       responses:
         "200":
           description: The individual comment has been replaced successfully
@@ -447,9 +424,8 @@ paths:
           in: path
           description: "ID of comment to be deleted"
           required: true
-          schema:
-            type: "integer"
-            format: "int64"
+          type: "integer"
+          format: "int64"
       responses:
         "200":
           description: The individual comment has been deleted successfully
@@ -466,21 +442,19 @@ paths:
       description: |
         This request obtains the list of all parent comments for a given post. It will return a json object that contains an array of individual comment objects. To obtain children comments of the returned comments, a seperate get request is required.
       parameters:
-      - name: id
-        in: path
-        description: "ID of post for which all comments are to be obtained"
-        required: true
-        schema:
+        - name: id
+          in: path
+          description: "ID of post for which all comments are to be obtained"
+          required: true
           type: "string"
           format: "uuid"
-
+      produces:
+        - application/json
       responses:
         "200":
           description: The list of comments has been retrieved successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Comments'
+          schema:
+            $ref: '#/definitions/Comments'
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
@@ -493,27 +467,29 @@ paths:
       description: |
         This request sends an individual comment. It is used to create a new comment. The json object will be sent in the request body of the http request. It is worth noting that this request is for creating a top level parent comment and not a child comment.
       parameters:
-      - name: id
-        in: path
-        description: "ID of post for the comment to be added to"
-        required: true
-        schema:
+        - name: id
+          in: path
+          description: "ID of post for the comment to be added to"
+          required: true
           type: "string"
           format: "uuid"
 
-      - name: comment
-        in: body
-        description: "The required information for the comment in a json format"
-        required: true
-        schema:
-          $ref: '#/components/schemas/CommentCreateRequestBody'
+        - name: comment
+          in: body
+          description: "The required information for the comment in a json format"
+          required: true
+          schema:
+            $ref: '#/definitions/CommentCreateRequestBody'
+
+      consumes:
+        - application/json
+      produces:
+        - application/json
       responses:
         "200":
           description: The comment has been sent successfully and an indivdual comment json object will be returned
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/IndividualComment'
+          schema:
+            $ref: '#/definitions/IndividualComment'
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
@@ -531,16 +507,15 @@ paths:
           in: path
           description: "ID of comment for which all children comments are to be obtained"
           required: true
-          schema:
-            type: "integer"
-            format: "int64"
+          type: "integer"
+          format: "int64"
+      produces:
+        - application/json
       responses:
         "200":
           description: The list of comments has been retrieved successfully
-          content:
-            application/json:
-              schema:
-              $ref: '#/components/schemas/Comments'
+          schema:
+            $ref: '#/definitions/Comments'
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
@@ -557,23 +532,26 @@ paths:
           in: path
           description: "ID of comment for the child comment to be added to"
           required: true
-          schema:
-            type: "integer"
-            format: "int64"
+          type: "integer"
+          format: "int64"
 
         - name: comment
           in: body
           description: "The required information for the comment in a json format"
           required: true
           schema:
-            $ref: '#/components/schemas/CommentCreateRequestBody'
+            $ref: '#/definitions/CommentCreateRequestBody'
+
+      consumes:
+        - application/json
+
+      produces:
+        - application/json
       responses:
         "200":
           description: The comment has been sent successfully and an indivdual comment json object will be returned
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/IndividualComment'
+          schema:
+            $ref: '#/definitions/IndividualComment'
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
@@ -589,882 +567,661 @@ paths:
       responses:
         "200":
           description: The key has been obtained
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PublicKeyRequestBody'
+          schema:
+            $ref: '#/definitions/PublicKeyRequestBody'
 
 # This is where the json definitions go
-components:
+definitions:
 
-  schemas:
-
-
-    IndividualUser:
-      type: object
-      required:
+  IndividualUser:
+    type: object
+    required:
       - id
       - username
       - description
       - _links
-      properties:
-        id:
-          type: string
-          format: uuid
-          example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
-
-        username:
-          type: string
-          example: "SamwiseGamgee123"
-
-        createdTime:
-          type: integer
-          format: int64
-          example: 1611071139539
-        description:
-          type: string
-          example: "Hi, I am Samwise Gamgee"
-
-        _links:
-          type: object
-          required:
-            - self
-            - users
-
-          properties:
-            self:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/users/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
-
-            users:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/users"
-
-    Users:
-      type: object
-      required:
-        - _embedded
-        - _links
-
-      properties:
-        _embedded:
-          type: object
-          required:
-            - userList
-          properties:
-            userList:
-              type: array
-              items: {
-                $ref: '#/components/schemas/IndividualUser'
-              }
-
-        _links:
-          type: object
-          required:
-            - self
-          properties:
-            self:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/users"
-
-    IndividualForum:
-      type: object
-      required:
-        - id
-        - forumName
-        - _links
-      properties:
-        id:
-          type: string
-          format: uuid
-          example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
-
-        forumName:
-          type: string
-          example: "Computer Science"
-
-        _links:
-          type: object
-          required:
-            - self
-            - forums
-            - subforums
-
-          properties:
-            self:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
-
-            forums:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/forums"
-
-            subforums:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75/subforums"
-
-    Forums:
-      type: object
-      required:
-        - _embedded
-        - _links
-
-      properties:
-        _embedded:
-          type: object
-          required:
-            - forumList
-          properties:
-            forumList:
-              type: array
-              items: {
-                $ref: '#/components/schemas/IndividualForum'
-              }
-
-        _links:
-          type: object
-          required:
-            - self
-          properties:
-            self:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/forums"
-
-    IndividualSubforum:
-      type: object
-      required:
-        - id
-        - subforumName
-        - forumId
-        - _links
-      properties:
-        id:
-          type: string
-          format: uuid
-          example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
-
-        subforumName:
-          type: string
-          example: "CS3050"
-
-        forumId:
-          type: string
-          format: uuid
-          example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
-
-        _links:
-          type: object
-          required:
-            - self
-            - forum
-            - posts
-
-          properties:
-            self:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
-
-            forum:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
-
-            posts:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75/posts"
-
-    Subforums:
-      type: object
-      required:
-        - _embedded
-        - _links
-
-      properties:
-        _embedded:
-          type: object
-          required:
-            - subforumList
-          properties:
-            subforumList:
-              type: array
-              items: {
-                $ref: '#/components/schemas/IndividualSubforum'
-              }
-
-        _links:
-          type: object
-          required:
-            - self
-          properties:
-            self:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75/subforums"
-
-    IndividualPostTemplate:
-      type: object
-      required:
-        - id
-        - postTitle
-        - createdTime
-        - modifiedTime
-        - userId
-        - subforumId
-        - postType
-        - _links
-
-      properties:
-
-        id:
-          type: string
-          format: uuid
-          example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
-
-        postTitle:
-          type: string
-          example: "This is a post"
-
-        createdTime:
-          type: integer
-          format: int64
-          example: 1611071139539
-
-        modifiedTime:
-          type: integer
-          format: int64
-          example: 1611071139539
-
-        userId:
-          type: string
-          format: uuid
-          example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
-
-        subforumId:
-          type: string
-          format: uuid
-          example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
-
-        postType:
-          type: string
-          enum:
-            - "text"
-            - "markdown"
-            - "image"
-            - "video"
-
-        _links:
-          type: object
-          required:
-            - self
-            - subforum
-            - forum
-            - user
-            - comments
-
-          properties:
-            self:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
-
-            subforum:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
-
-            forum:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
-
-            user:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/users/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
-
-            comments:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75/comments"
-
-    IndividualPostText:
-      allOf:
-        - $ref: '#/components/schemas/IndividualPostTemplate'
-        - type: object
-          required:
-            - postContents
-          properties:
-            postContents:
-              type: string
-              example: "Markdown goes here"
-
-
-
-    IndividualPostMarkdown:
-      allOf:
-        - $ref: '#/components/schemas/IndividualPostTemplate'
-        - type: object
-          required:
-            - postMarkdown
-          properties:
-            postMarkdown:
-              type: string
-              example: "Markdown goes here"
-
-    IndividualPostImage:
-      allOf:
-        - $ref: '#/components/schemas/IndividualPostTemplate'
-        - type: object
-          required:
-            - imageURL
-            - format
-            - width
-            - height
-          properties:
-            imageURL:
-              type: string
-              format: url
-              example: "Markdown goes here"
-            format:
-              type: string
-              enum:
-                - "jpg"
-                - "png"
-                - "tif"
-                - "gif"
-                - "webp"
-            width:
-              type: integer
-              format: int64
-              example: 360
-            height:
-              type: integer
-              format: int64
-              example: 600
-
-    IndividualPostVideo:
-      allOf:
-        - $ref: '#/components/schemas/IndividualPostTemplate'
-        - type: object
-          required:
-            - videoURL
-            - format
-          properties:
-            videoURL:
-              type: string
-              format: url
-              example: "Markdown goes here"
-            format:
-              type: string
-              enum:
-                - "mp4"
-                - "webm"
-                - "youtube"
-            width:
-              type: integer
-              format: int64
-              example: 360
-            height:
-              type: integer
-              format: int64
-              example: 600
-
-    Posts:
-      type: object
-      required:
-        - _embedded
-        - _links
-
-      properties:
-        _embedded:
-          type: object
-          required:
-            - postList
-          properties:
-            postList:
-              type: array
-              items: {
-                $ref: '#/components/schemas/IndividualPost'
-              }
-
-        _links:
-          type: object
-          required:
-            - self
-          properties:
-            self:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75/posts"
-
-    PostCreateRequestBodyTemplate:
-      type: object
-      required: [
-          postTitle,
-          type,
-          userId,
-      ]
-
-      properties:
-        postTitle:
-          type: string
-          example: "This is a title"
-        type:
-          type: string
-          enum: ["text", "markdown", "image", "video"]
-        userId:
-          type: string
-          format: uuid
-          example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
-
-    PostCreateRequestBodyText:
-      allOf:
-        - $ref: '#/components/schemas/PostCreateRequestBodyTemplate'
-      required: [
-          postContents,
-      ]
-      properties:
-        postContents:
-          type: string
-          example: "Markdown goes here"
-
-    PostCreateRequestBodyMarkdown:
-      allOf:
-        - $ref: '#/components/schemas/PostCreateRequestBodyTemplate'
-      required: [
-          postMarkdown,
-      ]
-      properties:
-        postMarkdown:
-          type: string
-          example: "Markdown goes here"
-
-    PostCreateRequestBodyImage:
-      allOf:
-        - $ref: '#/components/schemas/PostCreateRequestBodyTemplate'
-      required: [
-          imageURL,
-          format,
-      ]
-      properties:
-        imageURL:
-          type: string
-          format: url
-          example: "https://youtu.be/dQw4w9WgXcQ"
-        format:
-          type: string
-          enum:
-            - "jpg"
-            - "png"
-            - "tif"
-            - "gif"
-            - "webp"
-
-    PostCreateRequestBodyVideo:
-      allOf:
-        - $ref: '#/components/schemas/PostCreateRequestBodyTemplate'
-      required: [
-          videoURL,
-          format,
-      ]
-      properties:
-        videoURL:
-          type: string
-          format: url
-          example: "https://youtu.be/dQw4w9WgXcQ"
-        format:
-          type: string
-          enum:
-            - "mp4"
-            - "webm"
-            - "youtube"
-            -
-    PostUpdateRequestBodyTemplate:
-      type: object
-      required: [
-          postTitle,
-          type,
-          userId,
-      ]
-
-      properties:
-        postTitle:
-          type: string
-          example: "This is a title"
-        type:
-          type: string
-          enum: [ "text", "markdown", "image", "video" ]
-        userId:
-          type: string
-          format: uuid
-          example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
-
-    PostUpdateRequestBodyText:
-      allOf:
-        - $ref: '#/components/schemas/PostCreateRequestBodyTemplate'
-      required: [
-          postContents,
-      ]
-      properties:
-        postContents:
-          type: string
-          example: "Markdown goes here"
-
-    PostUpdateRequestBodyMarkdown:
-      allOf:
-        - $ref: '#/components/schemas/PostCreateRequestBodyTemplate'
-      required: [
-          postMarkdown,
-      ]
-      properties:
-        postMarkdown:
-          type: string
-          example: "Markdown goes here"
-
-    PostUpdateRequestBodyImage:
-      allOf:
-        - $ref: '#/components/schemas/PostCreateRequestBodyTemplate'
-      required: [
-          imageURL,
-          format,
-      ]
-      properties:
-        imageURL:
-          type: string
-          format: url
-          example: "https://youtu.be/dQw4w9WgXcQ"
-        format:
-          type: string
-          enum:
-            - "jpg"
-            - "png"
-            - "tif"
-            - "gif"
-            - "webp"
-
-    PostUpdateRequestBodyVideo:
-      allOf:
-        - $ref: '#/components/schemas/PostCreateRequestBodyTemplate'
-      required: [
-          videoURL,
-          format,
-      ]
-      properties:
-        videoURL:
-          type: string
-          format: url
-          example: "https://youtu.be/dQw4w9WgXcQ"
-        format:
-          type: string
-          enum:
-            - "mp4"
-            - "webm"
-            - "youtube"
-#    PostUpdateRequestBody:
-#      type: object
-#      required: [
-#        postTitle,
-#        postContents,
-#        userId,
-#      ]
-#
-#      properties:
-#        postTitle:
-#          type: string
-#          example: "Updated title"
-#        postContents:
-#          type: string
-#          example: "Updated post content"
-
-    IndividualComment:
-      type: object
-      required:
-        - id
-        - commentContent
-        - createdTime
-        - modifiedTime
-        - userId
-        - postId
-        - _links
-
-      properties:
-
-        id:
-          type: string
-          format: uuid
-          example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
-
-        commentContent:
-          type: string
-          example: "This is a comment"
-
-        createdTime:
-          type: integer
-          format: int64
-          example: 1611071139539
-
-        modifiedTime:
-          type: integer
-          format: int64
-          example: 1611071139539
-
-        userId:
-          type: string
-          format: uuid
-          example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
-
-        username:
-          type: string
-          example: "SamwiseGamgee123"
-
-        postId:
-          type: string
-          format: uuid
-          example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
-
-        _links:
-          type: object
-          required:
+    properties:
+      id:
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+
+      username:
+        type: string
+        example: "SamwiseGamgee123"
+
+      createdTime:
+        type: integer
+        format: int64
+        example: 1611071139539
+      description:
+        type: string
+        example: "Hi, I am Samwise Gamgee"
+
+      _links:
+        type: object
+        required:
+          - self
+          - users
+
+        properties:
+          self:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/users/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
+
+          users:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/users"
+
+  Users:
+    type: object
+    required:
+      - _embedded
+      - _links
+
+    properties:
+      _embedded:
+        type: object
+        required:
+          - userList
+        properties:
+          userList:
+            type: array
+            items: {
+              $ref: '#/definitions/IndividualUser'
+            }
+
+      _links:
+        type: object
+        required:
+          - self
+        properties:
+          self:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/users"
+
+  IndividualForum:
+    type: object
+    required:
+      - id
+      - forumName
+      - _links
+    properties:
+      id:
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+
+      forumName:
+        type: string
+        example: "Computer Science"
+
+      _links:
+        type: object
+        required:
+          - self
+          - forums
+          - subforums
+
+        properties:
+          self:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
+
+          forums:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/forums"
+
+          subforums:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75/subforums"
+
+  Forums:
+    type: object
+    required:
+      - _embedded
+      - _links
+
+    properties:
+      _embedded:
+        type: object
+        required:
+          - forumList
+        properties:
+          forumList:
+            type: array
+            items: {
+              $ref: '#/definitions/IndividualForum'
+            }
+
+      _links:
+        type: object
+        required:
+          - self
+        properties:
+          self:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/forums"
+
+  IndividualSubforum:
+    type: object
+    required:
+      - id
+      - subforumName
+      - forumId
+      - _links
+    properties:
+      id:
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+
+      subforumName:
+        type: string
+        example: "CS3050"
+
+      forumId:
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+
+      _links:
+        type: object
+        required:
+          - self
+          - forum
+          - posts
+
+        properties:
+          self:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
+
+          forum:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
+
+          posts:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75/posts"
+
+  Subforums:
+    type: object
+    required:
+      - _embedded
+      - _links
+
+    properties:
+      _embedded:
+        type: object
+        required:
+          - subforumList
+        properties:
+          subforumList:
+            type: array
+            items: {
+              $ref: '#/definitions/IndividualSubforum'
+            }
+
+      _links:
+        type: object
+        required:
+          - self
+        properties:
+          self:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75/subforums"
+
+  IndividualPost:
+    type: object
+    required:
+      - id
+      - postTitle
+      - postContents
+      - createdTime
+      - modifiedTime
+      - userId
+      - subforumId
+      - postType
+      - _links
+
+    properties:
+
+      id:
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+
+      postTitle:
+        type: string
+        example: "This is a post"
+
+      postContents:
+        type: string
+        example: "Markdown goes here"
+
+      createdTime:
+        type: integer
+        format: int64
+        example: 1611071139539
+
+      modifiedTime:
+        type: integer
+        format: int64
+        example: 1611071139539
+
+      userId:
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+
+      subforumId:
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+
+      postType:
+        type: string
+        enum:
+          - "text"
+          - "markdown"
+
+      _links:
+        type: object
+        required:
+          - self
+          - subforum
+          - forum
+          - user
+          - comments
+
+        properties:
+          self:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
+
+          subforum:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
+
+          forum:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
+
+          user:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/users/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
+
+          comments:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75/comments"
+
+  Posts:
+    type: object
+    required:
+      - _embedded
+      - _links
+
+    properties:
+      _embedded:
+        type: object
+        required:
+          - postList
+        properties:
+          postList:
+            type: array
+            items: {
+              $ref: '#/definitions/IndividualPost'
+            }
+
+      _links:
+        type: object
+        required:
+          - self
+        properties:
+          self:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75/posts"
+
+  PostCreateRequestBody:
+    type: object
+    required: [
+        postTitle,
+        postContents,
+        userId,
+        postType,
+    ]
+
+    properties:
+      postTitle:
+        type: string
+        example: "This is a title"
+      postContents:
+        type: string
+        example: "Markdown goes here"
+      userId:
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+      postType:
+        type: string
+        enum:
+          - "text"
+          - "markdown"
+
+  PostUpdateRequestBody:
+    type: object
+    required: [
+        postTitle,
+        postContents,
+        userId,
+    ]
+
+    properties:
+      postTitle:
+        type: string
+        example: "Updated title"
+      postContents:
+        type: string
+        example: "Updated post content"
+
+  IndividualComment:
+    type: object
+    required:
+      - id
+      - commentContent
+      - createdTime
+      - modifiedTime
+      - userId
+      - postId
+      - _links
+
+    properties:
+
+      id:
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+
+      commentContent:
+        type: string
+        example: "This is a comment"
+
+      createdTime:
+        type: integer
+        format: int64
+        example: 1611071139539
+
+      modifiedTime:
+        type: integer
+        format: int64
+        example: 1611071139539
+
+      userId:
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+
+      username:
+        type: string
+        example: "SamwiseGamgee123"
+
+      postId:
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+
+      _links:
+        type: object
+        required:
           - self
           - subforum
           - forum
           - user
           - childComments
 
-          properties:
-            self:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
+        properties:
+          self:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
-            post:
-              type: object
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
+          post:
+            type: object
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
-            parentComment:
-              type: object
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/comments/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
+          parentComment:
+            type: object
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/comments/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
-            subforum:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
+          subforum:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
-            forum:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
+          forum:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/forums/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
-            user:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/users/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
+          user:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/users/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
-            childComments:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/comments/46659ec8-ebe8-4713-a435-c0e7c8cefc75/comments"
+          childComments:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/comments/46659ec8-ebe8-4713-a435-c0e7c8cefc75/comments"
 
-    Comments:
-      type: object
-      required:
-        - _embedded
-        - _links
+  Comments:
+    type: object
+    required:
+      - _embedded
+      - _links
 
-      properties:
-        _embedded:
-          type: object
-          required:
-            - commentList
-          properties:
-            commentList:
-              type: array
-              items: {
-                $ref: '#/components/schemas/IndividualComment'
-              }
+    properties:
+      _embedded:
+        type: object
+        required:
+          - commentList
+        properties:
+          commentList:
+            type: array
+            items: {
+              $ref: '#/definitions/IndividualComment'
+            }
 
-        _links:
-          type: object
-          required:
-            - self
-          properties:
-            self:
-              type: object
-              required:
-                - href
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: "<url>/api/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75/comments"
+      _links:
+        type: object
+        required:
+          - self
+        properties:
+          self:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+                format: url
+                example: "<url>/api/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75/comments"
 
-    CommentCreateRequestBody:
-      type: object
-      required: [
-          commentContent,
-          userId,
-          username,
-      ]
-
-      properties:
-        commentContent:
-          type: string
-          example: "This is a comment"
-        userId:
-          type: string
-          format: uuid
-          example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
-        username:
-          type: string
-          example: "SamwiseGamgee123"
-
-    CommentUpdateRequestBody:
-      type: object
-      required: [
+  CommentCreateRequestBody:
+    type: object
+    required: [
         commentContent,
         userId,
         username,
-      ]
+    ]
 
-      properties:
-        commentContent:
-          type: string
-          example: "Updated comment string"
+    properties:
+      commentContent:
+        type: string
+        example: "This is a comment"
+      userId:
+        type: string
+        format: uuid
+        example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+      username:
+        type: string
+        example: "SamwiseGamgee123"
 
-    PublicKeyRequestBody:
-      type: object
-      required: [ key ]
-      properties:
-        key:
-          type: string
-          example: "AAAAB3NzaC1yc2EAAAABJQAAAQB/nAmOjTmezNUDKYvEeIRf2YnwM9/uUG1d0BYsc8/tRtx+RGi7N2lUbp728MXGwdnL9od4cItzky/zVdLZE2cycOa18xBK9cOWmcKS0A8FYBxEQWJ/q9YVUgZbFKfYGaGQxsER+A0w/fX8ALuk78ktP31K69LcQgxIsl7rNzxsoOQKJ/CIxOGMMxczYTiEoLvQhapFQMs3FL96didKr/QbrfB1WT6s3838SEaXfgZvLef1YB2xmfhbT9OXFE3FXvh2UPBfN+ffE7iiayQf/2XR+8j4N4bW30DiPtOQLGUrH1y5X/rpNZNlWW2+jGIxqZtgWg7lTy3mXy5x836Sj/6L"
+  CommentUpdateRequestBody:
+    type: object
+    required: [
+        commentContent,
+        userId,
+        username,
+    ]
+
+    properties:
+      commentContent:
+        type: string
+        example: "Updated comment string"
+
+  PublicKeyRequestBody:
+    type: object
+    required: [ key ]
+    properties:
+      key:
+        type: string
+        example: "AAAAB3NzaC1yc2EAAAABJQAAAQB/nAmOjTmezNUDKYvEeIRf2YnwM9/uUG1d0BYsc8/tRtx+RGi7N2lUbp728MXGwdnL9od4cItzky/zVdLZE2cycOa18xBK9cOWmcKS0A8FYBxEQWJ/q9YVUgZbFKfYGaGQxsER+A0w/fX8ALuk78ktP31K69LcQgxIsl7rNzxsoOQKJ/CIxOGMMxczYTiEoLvQhapFQMs3FL96didKr/QbrfB1WT6s3838SEaXfgZvLef1YB2xmfhbT9OXFE3FXvh2UPBfN+ffE7iiayQf/2XR+8j4N4bW30DiPtOQLGUrH1y5X/rpNZNlWW2+jGIxqZtgWg7lTy3mXy5x836Sj/6L"
 
 schemes:
   - http
