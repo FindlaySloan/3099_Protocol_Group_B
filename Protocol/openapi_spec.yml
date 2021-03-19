@@ -240,7 +240,7 @@ paths:
         description: Boolean value to repressent upvote or downvote, if user has "unvoted" then value will be sent as "null"
         required: true
         schema:
-          $ref: '#/definitions/PostVoteRequestBody'
+          $ref: '#/definitions/VoteRequestBody'
       produces:
         - application/json
       responses:
@@ -527,6 +527,39 @@ paths:
           description: Forbidden. If permissions not allowed.
         "404":
           description: Post not found.
+
+  /api/comments/{id}/vote:
+    put:
+      tags:
+        - Comments
+      summary: Sends the latest state of a user's "vote" on a comment.
+      description: |
+        A given implementation can determine the origin implementation and the userId of the user making the vote.
+        So the only data that is required to be sent is the postId, and the state of the vote.
+        If a user "unvotes" then null should be sent, an upvote: true, a downvote: false.
+      parameters:
+      - name: id
+        in: path
+        description: "ID of comment to vote on"
+        required: true
+        type: "string"
+        format: "uuid"
+        
+      - name: vote
+        in: body
+        description: Boolean value to repressent upvote or downvote, if user has "unvoted" then value will be sent as "null"
+        required: true
+        schema:
+          $ref: '#/definitions/VoteRequestBody'
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: The individual comment has been voted on successfully
+        "403":
+          description: Forbidden. If permissions not allowed.
+        "404":
+          description: Comment not found.
 
   /api/comments/{id}/comments:
     get:
@@ -1037,7 +1070,7 @@ definitions:
                 format: url
                 example: "<url>/api/subforums/46659ec8-ebe8-4713-a435-c0e7c8cefc75/posts"
 
-  PostVoteRequestBody:
+  VoteRequestBody:
     type: object
     required: [
       isUpvote
@@ -1092,6 +1125,9 @@ definitions:
       - modifiedTime
       - userId
       - postId
+      - totalVotes
+      - upVotes
+      - _userVotes
       - _links
 
     properties:
@@ -1128,6 +1164,29 @@ definitions:
         type: string
         format: uuid
         example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+
+      totalVotes:
+        type: integer
+        format: uint64
+        example: 1
+
+      upvotes:
+        type: integer
+        format: uint64
+        example: 0
+
+      _userVotes:
+        type: array
+        items:
+          type: object
+          properties: 
+            isUpvote:
+              type: boolean
+              example: false
+            user:
+              type: string
+              format: url
+              example: "<url>/users/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
       _links:
         type: object
@@ -1237,6 +1296,16 @@ definitions:
                 type: string
                 format: url
                 example: "<url>/api/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75/comments"
+
+  CommentVoteRequestBody:
+    type: object
+    required: [
+      isUpvote
+    ]
+    properties: 
+      isUpvote:
+        type: boolean
+        example: true
 
   CommentCreateRequestBody:
     type: object
