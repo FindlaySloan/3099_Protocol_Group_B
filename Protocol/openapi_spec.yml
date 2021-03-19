@@ -984,6 +984,7 @@ definitions:
         postTitle,
         postContents,
         userId,
+        username,
     ]
 
     properties:
@@ -997,6 +998,9 @@ definitions:
         type: string
         format: uuid
         example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+      username:
+        type: string
+        example: "SamwiseGamgee123"
 
   PostUpdateRequestBody:
     type: object
