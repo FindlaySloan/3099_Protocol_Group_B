@@ -914,8 +914,8 @@ definitions:
       - modifiedTime
       - userId
       - subforumId
-      - totalVotes
-      - upVotes
+      - downvotes
+      - upvotes
       - _userVotes
       - _links
 
@@ -954,7 +954,7 @@ definitions:
         format: uuid
         example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
-      totalVotes:
+      downvotes:
         type: integer
         format: uint64
         example: 1
@@ -1125,8 +1125,8 @@ definitions:
       - modifiedTime
       - userId
       - postId
-      - totalVotes
-      - upVotes
+      - downvotes
+      - upvotes
       - _userVotes
       - _links
 
@@ -1165,7 +1165,7 @@ definitions:
         format: uuid
         example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
 
-      totalVotes:
+      downvotes:
         type: integer
         format: uint64
         example: 1
