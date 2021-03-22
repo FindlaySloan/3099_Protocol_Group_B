@@ -600,6 +600,10 @@ definitions:
         type: string
         example: "Hi, I am Samwise Gamgee"
 
+      profileImageURL:
+        type: string
+        format: url
+        example: "https://i.picsum.photos/id/1015/6000/4000.jpg?hmac=aHjb0fRa1t14DTIEBcoC12c5rAXOSwnVlaA5ujxPQ0I"
       _links:
         type: object
         required:
