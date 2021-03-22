@@ -72,11 +72,16 @@ paths:
           required: true
           type: "integer"
           format: "int64"
+        - $ref: '#/parameters/limitParam'
+        - $ref: '#/parameters/skipParam'
+        - $ref: '#/parameters/byEntryParam'
       responses:
         "200":
           description: User Exists and the Json object has been retrived successfully.
           schema:
             $ref: '#/definitions/Posts'
+        "400":
+          description: Bad Request. If the index parameters or enum doesn't make sense.
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
@@ -98,11 +103,16 @@ paths:
           required: true
           type: "integer"
           format: "int64"
+        - $ref: '#/parameters/limitParam'
+        - $ref: '#/parameters/skipParam'
+        - $ref: '#/parameters/byEntryParam'
       responses:
         "200":
           description: User Exists and the Json object has been retrived successfully.
           schema:
             $ref: '#/definitions/Comments'
+        "400":
+          description: Bad Request. If the index parameters or enum doesn't make sense.
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
@@ -117,11 +127,17 @@ paths:
         This request obtains the list of all users. It will return a json object that contains an array of individual user objects
       produces:
         - application/json
+      parameters:
+        - $ref: '#/parameters/limitParam'
+        - $ref: '#/parameters/skipParam'
+        - $ref: '#/parameters/byUserParam'
       responses:
         "200":
           description: The list of users has been retrieved successfully
           schema:
             $ref: '#/definitions/Users'
+        "400":
+          description: Bad Request. If the index parameters or enum doesn't make sense.
         "403":
           description: Forbidden. If permissions not allowed.
 
@@ -304,13 +320,15 @@ paths:
       description: |
         This request obtains the list of all posts for a given subform. It will return a json object that contains an array of individual post objects
       parameters:
-
       - name: id
         in: path
         description: "ID of subforum for which all posts are to be obtained"
         required: true
         type: "string"
         format: "uuid"
+      - $ref: '#/parameters/limitParam'
+      - $ref: '#/parameters/skipParam'
+      - $ref: '#/parameters/byEntryParam'
       produces:
         - application/json
       responses:
@@ -318,6 +336,8 @@ paths:
           description: The list of posts has been retrieved successfully
           schema:
             $ref: '#/definitions/Posts'
+        "400":
+          description: Bad Request. If the index parameters or enum doesn't make sense.
         "403":
           description: Forbidden. If permissions not allowed.
 
@@ -448,6 +468,9 @@ paths:
         required: true
         type: "string"
         format: "uuid"
+      - $ref: '#/parameters/limitParam'
+      - $ref: '#/parameters/skipParam'
+      - $ref: '#/parameters/byEntryParam'
       produces:
         - application/json
       responses:
@@ -455,6 +478,8 @@ paths:
           description: The list of comments has been retrieved successfully
           schema:
             $ref: '#/definitions/Comments'
+        "400":
+          description: Bad Request. If the index parameters or enum doesn't make sense.
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
@@ -509,6 +534,9 @@ paths:
           required: true
           type: "integer"
           format: "int64"
+        - $ref: '#/parameters/limitParam'
+        - $ref: '#/parameters/skipParam'
+        - $ref: '#/parameters/byEntryParam'
       produces:
         - application/json
       responses:
@@ -516,6 +544,8 @@ paths:
           description: The list of comments has been retrieved successfully
           schema:
             $ref: '#/definitions/Comments'
+        "400":
+          description: Bad Request. If the index parameters or enum doesn't make sense.
         "403":
           description: Forbidden. If permissions not allowed.
         "404":
@@ -639,6 +669,9 @@ definitions:
         required:
           - userList
         properties:
+          totalCount:
+            type: integer
+            description: Total number of existing entries
           userList:
             type: array
             items: {
@@ -959,6 +992,9 @@ definitions:
         required:
           - postList
         properties:
+          totalCount:
+            type: integer
+            description: Total number of existing entries
           postList:
             type: array
             items: {
@@ -1150,6 +1186,9 @@ definitions:
         required:
           - commentList
         properties:
+          totalCount:
+            type: integer
+            description: Total number of existing entries
           commentList:
             type: array
             items: {
@@ -1256,6 +1295,51 @@ security:
   - signature: []
   - signature-input: []
 
+
+parameters:
+  limitParam:
+    in: query
+    name: limit
+    type: integer
+    default: 10    # TODO: Should this default be changed?
+    minimum: 0
+    required: false
+    description: The maximum number of posts being retrieved.
+
+  skipParam:
+    in: query
+    name: skip
+    type: integer
+    default: 0
+    minimum: 0
+    required: false
+    description: The number of items being skipped before the posts that are being retrieved.
+
+  byEntryParam:
+    in: query
+    name: by
+    type: string
+    enum:
+      - ranking
+      - createdTime
+      - modifiedTime
+    required: false
+    description: |
+      Sort order for post/comment entries.
+      * ranking - Highest 'ranked' items first.
+      * createdTime - Recently created posts first.
+      * modifiedTime - Recently modified posts first.
+
+  byUserParam:
+    in: query
+    name: by
+    type: string
+    enum:
+      - username
+    required: false
+    description: |
+      Sort order for user results.
+      * username - Ascending, from A to Z.
 
 schemes:
   - http
