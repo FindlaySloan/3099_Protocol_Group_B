@@ -40,12 +40,12 @@ paths:
       produces:
         - application/json
       parameters:
-      - name: id
-        in: path
-        description: "ID of user to return"
-        required: true
-        type: "string"
-        format: "uuid"
+        - name: id
+          in: path
+          description: "ID of user to return"
+          required: true
+          type: "string"
+          format: "uuid"
       responses:
         "200":
           description: User Exists and the Json object has been retrived successfully.
@@ -135,12 +135,12 @@ paths:
       produces:
         - application/json
       parameters:
-      - name: id
-        in: path
-        description: "ID of forum to return"
-        required: true
-        type: "string"
-        format: "uuid"
+        - name: id
+          in: path
+          description: "ID of forum to return"
+          required: true
+          type: "string"
+          format: "uuid"
       responses:
         "200":
           description: Forum Exists and the Json object has been retrived successfully.
@@ -178,12 +178,12 @@ paths:
       produces:
         - application/json
       parameters:
-      - name: id
-        in: path
-        description: "ID of subforum to return"
-        required: true
-        type: "string"
-        format: "uuid"
+        - name: id
+          in: path
+          description: "ID of subforum to return"
+          required: true
+          type: "string"
+          format: "uuid"
       responses:
         "200":
           description: Subforum Exists and the Json object has been retrived successfully.
@@ -202,12 +202,12 @@ paths:
       description: |
         This request obtains the list of all subforums for a given form. It will return a json object that contains an array of individual subforum objects
       parameters:
-      - name: id
-        in: path
-        description: "ID of forum for which all subforums are to be obtained"
-        required: true
-        type: "string"
-        format: "uuid"
+        - name: id
+          in: path
+          description: "ID of forum for which all subforums are to be obtained"
+          required: true
+          type: "string"
+          format: "uuid"
       produces:
         - application/json
       responses:
@@ -226,12 +226,12 @@ paths:
       description: |
         This request obtains an individual post based on the post id. It will return a single post json object
       parameters:
-      - name: id
-        in: path
-        description: "ID of post to be obtained"
-        required: true
-        type: "string"
-        format: "uuid"
+        - name: id
+          in: path
+          description: "ID of post to be obtained"
+          required: true
+          type: "string"
+          format: "uuid"
       produces:
         - application/json
       responses:
@@ -305,12 +305,12 @@ paths:
         This request obtains the list of all posts for a given subform. It will return a json object that contains an array of individual post objects
       parameters:
 
-      - name: id
-        in: path
-        description: "ID of subforum for which all posts are to be obtained"
-        required: true
-        type: "string"
-        format: "uuid"
+        - name: id
+          in: path
+          description: "ID of subforum for which all posts are to be obtained"
+          required: true
+          type: "string"
+          format: "uuid"
       produces:
         - application/json
       responses:
@@ -329,19 +329,19 @@ paths:
         This request sends an individual post. It is used to create a new post. The json object will be sent in the request body of the http request.
 
       parameters:
-      - name: id
-        in: path
-        description: "ID of subforum for which all posts are to be obtained"
-        required: true
-        type: "string"
-        format: "uuid"
+        - name: id
+          in: path
+          description: "ID of subforum for which all posts are to be obtained"
+          required: true
+          type: "string"
+          format: "uuid"
 
-      - name: post
-        in: body
-        description: "The required information for the post in a json format"
-        required: true
-        schema:
-          $ref: '#/definitions/PostCreateRequestBody'
+        - name: post
+          in: body
+          description: "The required information for the post in a json format"
+          required: true
+          schema:
+            $ref: '#/definitions/PostCreateRequestBody'
 
       consumes:
         - application/json
@@ -364,12 +364,12 @@ paths:
       description: |
         This request obtains an individual comment based on the comment id. It will return a single comment json object
       parameters:
-      - name: id
-        in: path
-        description: "ID of comment to be obtained"
-        required: true
-        type: "string"
-        format: "uuid"
+        - name: id
+          in: path
+          description: "ID of comment to be obtained"
+          required: true
+          type: "string"
+          format: "uuid"
       produces:
         - application/json
       responses:
@@ -442,12 +442,12 @@ paths:
       description: |
         This request obtains the list of all parent comments for a given post. It will return a json object that contains an array of individual comment objects. To obtain children comments of the returned comments, a seperate get request is required.
       parameters:
-      - name: id
-        in: path
-        description: "ID of post for which all comments are to be obtained"
-        required: true
-        type: "string"
-        format: "uuid"
+        - name: id
+          in: path
+          description: "ID of post for which all comments are to be obtained"
+          required: true
+          type: "string"
+          format: "uuid"
       produces:
         - application/json
       responses:
@@ -467,19 +467,19 @@ paths:
       description: |
         This request sends an individual comment. It is used to create a new comment. The json object will be sent in the request body of the http request. It is worth noting that this request is for creating a top level parent comment and not a child comment.
       parameters:
-      - name: id
-        in: path
-        description: "ID of post for the comment to be added to"
-        required: true
-        type: "string"
-        format: "uuid"
+        - name: id
+          in: path
+          description: "ID of post for the comment to be added to"
+          required: true
+          type: "string"
+          format: "uuid"
 
-      - name: comment
-        in: body
-        description: "The required information for the comment in a json format"
-        required: true
-        schema:
-          $ref: '#/definitions/CommentCreateRequestBody'
+        - name: comment
+          in: body
+          description: "The required information for the comment in a json format"
+          required: true
+          schema:
+            $ref: '#/definitions/CommentCreateRequestBody'
 
       consumes:
         - application/json
@@ -578,10 +578,10 @@ definitions:
   IndividualUser:
     type: object
     required:
-    - id
-    - username
-    - description
-    - _links
+      - id
+      - username
+      - description
+      - _links
     properties:
       id:
         type: string
@@ -854,6 +854,7 @@ definitions:
       - modifiedTime
       - userId
       - subforumId
+      - postType
       - _links
 
     properties:
@@ -890,6 +891,12 @@ definitions:
         type: string
         format: uuid
         example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+
+      postType:
+        type: string
+        enum:
+          - "text"
+          - "markdown"
 
       _links:
         type: object
@@ -990,6 +997,7 @@ definitions:
         postTitle,
         postContents,
         userId,
+        postType,
     ]
 
     properties:
@@ -1003,13 +1011,18 @@ definitions:
         type: string
         format: uuid
         example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+      postType:
+        type: string
+        enum:
+          - "text"
+          - "markdown"
 
   PostUpdateRequestBody:
     type: object
     required: [
-      postTitle,
-      postContents,
-      userId,
+        postTitle,
+        postContents,
+        userId,
     ]
 
     properties:
@@ -1069,11 +1082,11 @@ definitions:
       _links:
         type: object
         required:
-        - self
-        - subforum
-        - forum
-        - user
-        - childComments
+          - self
+          - subforum
+          - forum
+          - user
+          - childComments
 
         properties:
           self:
@@ -1198,9 +1211,9 @@ definitions:
   CommentUpdateRequestBody:
     type: object
     required: [
-      commentContent,
-      userId,
-      username,
+        commentContent,
+        userId,
+        username,
     ]
 
     properties:
