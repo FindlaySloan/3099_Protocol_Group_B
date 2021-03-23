@@ -853,6 +853,7 @@ definitions:
       - createdTime
       - modifiedTime
       - userId
+      - username
       - subforumId
       - postType
       - _links
@@ -886,6 +887,10 @@ definitions:
         type: string
         format: uuid
         example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+
+      username:
+        type: string
+        example: SamwiseGamgee123
 
       subforumId:
         type: string
@@ -997,6 +1002,7 @@ definitions:
         postTitle,
         postContents,
         userId,
+        username,
         postType,
     ]
 
@@ -1011,6 +1017,9 @@ definitions:
         type: string
         format: uuid
         example: 46659ec8-ebe8-4713-a435-c0e7c8cefc75
+      username:
+        type: string
+        example: "SamwiseGamgee123"
       postType:
         type: string
         enum:
