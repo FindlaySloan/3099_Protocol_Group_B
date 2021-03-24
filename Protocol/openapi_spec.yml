@@ -578,10 +578,9 @@ definitions:
   IndividualUser:
     type: object
     required:
-      - id
-      - username
-      - description
-      - _links
+    - id
+    - username
+    - _links
     properties:
       id:
         type: string
@@ -596,6 +595,7 @@ definitions:
         type: integer
         format: int64
         example: 1611071139539
+
       description:
         type: string
         example: "Hi, I am Samwise Gamgee"
