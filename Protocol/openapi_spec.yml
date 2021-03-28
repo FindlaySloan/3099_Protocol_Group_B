@@ -1233,7 +1233,7 @@ definitions:
               href:
                 type: string
                 format: url
-                example: "<url>/api/posts/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
+                example: "<url>/api/comments/46659ec8-ebe8-4713-a435-c0e7c8cefc75"
 
           post:
             type: object
